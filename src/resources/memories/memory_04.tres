@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+crystal_id = &"memory_04"
+memory_index = 4
+display_name = "芽生えた信頼"
+developer_description = "ギルガメが少しずつガロードを信頼し始める。"
+associated_dungeon_area = &"underground_forest"
+expected_image_paths = PackedStringArray("res://assets/memories/memory_04/image_01.png", "res://assets/memories/memory_04/image_02.png")

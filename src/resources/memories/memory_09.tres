@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+crystal_id = &"memory_09"
+memory_index = 9
+display_name = "守りたい友達"
+developer_description = "ガロードがギルガメを守り、ふたりで村から逃げる。"
+associated_dungeon_area = &"ruined_village"
+expected_image_paths = PackedStringArray("res://assets/memories/memory_09/image_01.png", "res://assets/memories/memory_09/image_02.png", "res://assets/memories/memory_09/image_03.png")

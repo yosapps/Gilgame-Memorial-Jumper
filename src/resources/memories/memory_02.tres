@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+crystal_id = &"memory_02"
+memory_index = 2
+display_name = "やさしい手"
+developer_description = "ガロードがギルガメの傷を丁寧に手当てする。"
+associated_dungeon_area = &"ancient_ruins"
+expected_image_paths = PackedStringArray("res://assets/memories/memory_02/image_01.png", "res://assets/memories/memory_02/image_02.png")

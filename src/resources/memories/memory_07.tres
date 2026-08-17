@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+crystal_id = &"memory_07"
+memory_index = 7
+display_name = "忍び寄る噂"
+developer_description = "村人たちが近くにモンスターがいる痕跡を見つける。"
+associated_dungeon_area = &"ruined_village"
+expected_image_paths = PackedStringArray("res://assets/memories/memory_07/image_01.png", "res://assets/memories/memory_07/image_02.png")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+crystal_id = &"memory_10"
+memory_index = 10
+display_name = "時空の裂け目"
+developer_description = "地面が裂け、落ちかけたガロードをギルガメが救う。代わりにギルガメが時空の歪みへ落ちていく、最も強く感情的な記憶。"
+associated_dungeon_area = &"time_distortion"
+expected_image_paths = PackedStringArray("res://assets/memories/memory_10/image_01.png", "res://assets/memories/memory_10/image_02.png", "res://assets/memories/memory_10/image_03.png", "res://assets/memories/memory_10/image_04.png")
+short_subtitle = "ガロード……思い出した。"
+seconds_per_image = 5.0
+transition_duration = 1.5

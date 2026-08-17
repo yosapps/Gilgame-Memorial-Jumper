@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+crystal_id = &"memory_01"
+memory_index = 1
+display_name = "はじまりの記憶"
+developer_description = "ガロードが村外れで傷ついたギルガメを見つける。"
+associated_dungeon_area = &"abyss"
+expected_image_paths = PackedStringArray("res://assets/memories/memory_01/image_01.png", "res://assets/memories/memory_01/image_02.png")
+short_subtitle = "……誰だ？"
