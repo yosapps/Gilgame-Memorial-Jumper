@@ -24,6 +24,11 @@ boot_splash/image="res://assets/sprites/unnamed.png"
 [autoload]
 
 Global="*res://src/scripts/global.gd"
+SaveManager="*res://src/scripts/managers/save_manager.gd"
+MemoryManager="*res://src/scripts/managers/memory_manager.gd"
+GameTimeManager="*res://src/scripts/managers/game_time_manager.gd"
+EndingManager="*res://src/scripts/managers/ending_manager.gd"
+DebugTools="*res://src/scripts/managers/debug_tools.gd"
 ClickSound="*res://src/scenes/click_sound.tscn"
 Bgm="*res://src/scenes/bgm.tscn"
 

@@ -9,12 +9,14 @@ var SELECTED_MODE = tr("normal-mode")
 var GAME_ID = 1
 
 func _ready():
+	GameTimeManager.stop_run()
 	Bgm.play()
 	Global.is_mobile_web = OS.has_feature("web_ios") || OS.has_feature("web_android")
 
 func start_tutorial():
 	if !ClickSound.playing: ClickSound.play()
 	Bgm.stop()
+	GameTimeManager.reset_timer()
 	get_tree().change_scene_to_file("res://src/scenes/tutorial.tscn")
 
 func donate():

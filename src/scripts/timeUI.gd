@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var showTimer = true
+@export var showTimer = false
 @onready var label = $Label
 @onready var timer = $Timer
 @onready var pauseUI = $Pause
@@ -9,6 +9,7 @@ var time = 0
 
 func _ready():
 	timer.start()
+	label.visible = showTimer
 		
 func hide_timer():
 	$Label.hide()

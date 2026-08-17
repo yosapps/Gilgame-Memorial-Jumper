@@ -7,6 +7,7 @@ extends Node2D
 var isPaused = false
 
 func _ready():
+	GameTimeManager.start_run()
 	# 画面遷移のフェードインを実行
 	color_rect.visible = true
 	transition.play("fade_in")
@@ -33,6 +34,8 @@ func pause_event():
 func go_title():
 	# タイトル画面に戻る処理
 	get_tree().paused = false # ポーズを解除
+	GameTimeManager.stop_run()
+	SaveManager.save_game()
 	get_tree().change_scene_to_file("res://src/scenes/title.tscn") # タイトルシーンへ移動
 
 func reset():

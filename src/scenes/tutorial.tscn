@@ -15,6 +15,19 @@
 [ext_resource type="PackedScene" uid="uid://ccwphc16xdp1d" path="res://src/scenes/timeUI.tscn" id="12_6dux4"]
 [ext_resource type="PackedScene" uid="uid://dme773jdltbrw" path="res://src/scenes/npc.tscn" id="13_ha8qc"]
 [ext_resource type="PackedScene" uid="uid://oj12lsct7omy" path="res://src/scenes/moving_platform.tscn" id="14_moving_platform"]
+[ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="15_cutscene"]
+[ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="16_menu"]
+[ext_resource type="PackedScene" path="res://src/scenes/memory_crystal.tscn" id="17_crystal"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_01.tres" id="18_m01"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_02.tres" id="19_m02"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_03.tres" id="20_m03"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_04.tres" id="21_m04"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_05.tres" id="22_m05"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_06.tres" id="23_m06"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_07.tres" id="24_m07"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_08.tres" id="25_m08"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_09.tres" id="26_m09"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_10.tres" id="27_m10"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4r27"]
 texture = ExtResource("4_pkkgn")
@@ -893,6 +906,50 @@ dialogue = Array[String](["おや、挑戦者かい？ この塔は、焦る者�
 [node name="MovingPlatform" parent="." unique_id=1609242261 instance=ExtResource("14_moving_platform")]
 position = Vector2(286, 494)
 destination_offset = Vector2(91.125, -200)
+
+[node name="MemoryCutscene" parent="." instance=ExtResource("15_cutscene")]
+
+[node name="MemoryMenu" parent="." instance=ExtResource("16_menu")]
+
+[node name="MemoryCrystal01" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(735, 500)
+data = ExtResource("18_m01")
+
+[node name="MemoryCrystal02" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(520, 350)
+data = ExtResource("19_m02")
+
+[node name="MemoryCrystal03" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(780, 205)
+data = ExtResource("20_m03")
+
+[node name="MemoryCrystal04" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(390, 65)
+data = ExtResource("21_m04")
+
+[node name="MemoryCrystal05" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(700, -85)
+data = ExtResource("22_m05")
+
+[node name="MemoryCrystal06" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(470, -235)
+data = ExtResource("23_m06")
+
+[node name="MemoryCrystal07" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(760, -380)
+data = ExtResource("24_m07")
+
+[node name="MemoryCrystal08" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(420, -525)
+data = ExtResource("25_m08")
+
+[node name="MemoryCrystal09" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(690, -670)
+data = ExtResource("26_m09")
+
+[node name="MemoryCrystal10" parent="." instance=ExtResource("17_crystal")]
+position = Vector2(570, -835)
+data = ExtResource("27_m10")
 
 [connection signal="pressed" from="HUB/WinPanel/HBoxContainer/GoMenuBtn" to="." method="go_title"]
 [connection signal="pressed" from="HUB/WinPanel/HBoxContainer/ResetBtn" to="." method="reset"]

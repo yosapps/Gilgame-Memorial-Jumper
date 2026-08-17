@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EndingConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/ending_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+fast_threshold_seconds = 3600.0
+medium_threshold_seconds = 10800.0
+require_complete_memory = true
