@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7lqsdwp1ugpl"]
+
+[ext_resource type="Texture2D" uid="uid://c33348o1xves5" path="res://assets/sprites/UI/generic_button_circle_fill.png" id="1_8gbda"]
+[ext_resource type="Script" path="res://src/scripts/joystick.gd" id="1_av5lg"]
+[ext_resource type="Texture2D" uid="uid://dc5r86m05e2bi" path="res://assets/sprites/joybtn.png" id="2_xtskt"]
+
+[node name="Joystick" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_av5lg")
+
+[node name="handle" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_8gbda")
+expand_mode = 1
+
+[node name="base" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.266667)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_xtskt")
+expand_mode = 1

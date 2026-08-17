@@ -1,0 +1,131 @@
+[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://bxrufkvn8c50o"]
+
+[ext_resource type="Texture2D" uid="uid://b30f4jk30bpvo" path="res://assets/sprites/player/giru-down/gilgame-down.png" id="1_w3fxo"]
+[ext_resource type="Texture2D" uid="uid://cv0iqmctphqi3" path="res://assets/sprites/player/giru-ldle/pixil-frame-0.png" id="2_bk34a"]
+[ext_resource type="Texture2D" uid="uid://duq0uqwk53685" path="res://assets/sprites/player/giru-ldle/pixil-frame-1.png" id="3_a0yvm"]
+[ext_resource type="Texture2D" uid="uid://dk0p1trro01k4" path="res://assets/sprites/player/giru-ldle/pixil-frame-2.png" id="4_8123j"]
+[ext_resource type="Texture2D" uid="uid://buguu64j16ype" path="res://assets/sprites/player/giru-ldle/pixil-frame-3.png" id="5_t5dda"]
+[ext_resource type="Texture2D" uid="uid://4ewkc73g4aaw" path="res://assets/sprites/player/giru-ldle/pixil-frame-4.png" id="6_x1lat"]
+[ext_resource type="Texture2D" uid="uid://cfv7id4eskebs" path="res://assets/sprites/player/giru-ldle/pixil-frame-5.png" id="7_qmrt4"]
+[ext_resource type="Texture2D" uid="uid://c2qr7aswtvv36" path="res://assets/sprites/player/giru-ldle/pixil-frame-6.png" id="8_1ox0y"]
+[ext_resource type="Texture2D" uid="uid://dlbxjpdh5cu5g" path="res://assets/sprites/player/giru-ldle/pixil-frame-7.png" id="9_j7o3k"]
+[ext_resource type="Texture2D" uid="uid://ceioqag6sg2oa" path="res://assets/sprites/player/giru-ldle/pixil-frame-8.png" id="10_0p42j"]
+[ext_resource type="Texture2D" uid="uid://dwrbsw2g8yess" path="res://assets/sprites/player/giru-ldle/pixil-frame-9.png" id="11_ftbe3"]
+[ext_resource type="Texture2D" uid="uid://bwfcsx7wdtpls" path="res://assets/sprites/player/giru-jump/pixil-layer-jumpdown.png" id="12_m5me0"]
+[ext_resource type="Texture2D" uid="uid://csf5vfo14iv3v" path="res://assets/sprites/player/giru-jump/pixil-layer-jump.png" id="13_as0ce"]
+[ext_resource type="Texture2D" uid="uid://dv1n8776onyxf" path="res://assets/sprites/player/giru-jump/pixil-prepare-jump.png" id="14_76qqv"]
+[ext_resource type="Texture2D" uid="uid://berdddota2qst" path="res://assets/sprites/player/giru-run/pixil-frame-0.png" id="15_u2c02"]
+[ext_resource type="Texture2D" uid="uid://bqjbdpukkyw5c" path="res://assets/sprites/player/giru-run/pixil-frame-1.png" id="16_8abl6"]
+[ext_resource type="Texture2D" uid="uid://cbmie5d55bi3r" path="res://assets/sprites/player/giru-run/pixil-frame-2.png" id="17_t1tib"]
+[ext_resource type="Texture2D" uid="uid://ctwtiq6helpnp" path="res://assets/sprites/player/giru-run/pixil-frame-3.png" id="18_8cd17"]
+[ext_resource type="Texture2D" uid="uid://dufs7lo0nlgpn" path="res://assets/sprites/player/giru-run/pixil-frame-4.png" id="19_8vjtm"]
+[ext_resource type="Texture2D" uid="uid://cgvmolvd84uu8" path="res://assets/sprites/player/giru-run/pixil-frame-5.png" id="20_pnwf1"]
+[ext_resource type="Texture2D" uid="uid://dee2wn8pmhi3q" path="res://assets/sprites/player/giru-run/pixil-frame-6.png" id="21_h417b"]
+[ext_resource type="Texture2D" uid="uid://c6o54uf8ptdow" path="res://assets/sprites/player/giru-run/pixil-frame-7.png" id="22_eoyob"]
+[ext_resource type="Texture2D" uid="uid://covjwp5lma4cr" path="res://assets/sprites/player/giru-run/pixil-frame-8.png" id="23_x8smi"]
+[ext_resource type="Texture2D" uid="uid://dbegehlxelhs7" path="res://assets/sprites/player/giru-run/pixil-frame-9.png" id="24_y58ru"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w3fxo")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bk34a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a0yvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8123j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t5dda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_x1lat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qmrt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1ox0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_j7o3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0p42j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ftbe3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_m5me0")
+}],
+"loop": true,
+"name": &"jump-down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_as0ce")
+}],
+"loop": true,
+"name": &"jump-up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_76qqv")
+}],
+"loop": true,
+"name": &"prepare",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_u2c02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_8abl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_t1tib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_8cd17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8vjtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_pnwf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_h417b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_eoyob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_x8smi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_y58ru")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://oj12lsct7omy"]
+
+[ext_resource type="Script" uid="uid://cfy1px0ngq2xw" path="res://src/scripts/moving_platform.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_platform"]
+size = Vector2(80, 14)
+
+[node name="MovingPlatform" type="AnimatableBody2D" unique_id=168349983]
+script = ExtResource("1_script")
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=1789584563]
+position = Vector2(0, 1)
+color = Color(0.025, 0.04, 0.07, 0.55)
+polygon = PackedVector2Array(-42, -4, 42, -4, 38, 9, -19.758297, 9, -38, 9)
+
+[node name="Base" type="Polygon2D" parent="." unique_id=533391650]
+color = Color(0.32214093, 0.15363747, 0.011082563, 1)
+polygon = PackedVector2Array(-42, -7, 42, -7, 38, 7, -38, 7)
+
+[node name="Top" type="Polygon2D" parent="." unique_id=588445494]
+color = Color(0.6443396, 0.3321621, 0.049591444, 1)
+polygon = PackedVector2Array(-42, -7, 42, -7, 38, -2, -38, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1424210636]
+shape = SubResource("RectangleShape_platform")

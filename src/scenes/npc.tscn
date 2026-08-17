@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dme773jdltbrw"]
+
+[ext_resource type="Script" uid="uid://b54j7e80qeycp" path="res://src/scripts/start_npc.gd" id="1_gcxii"]
+[ext_resource type="Texture2D" uid="uid://bc0qdklqiwltx" path="res://assets/sprites/npcs/Enemy7.png" id="2_gcxii"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m16n6"]
+radius = 40.792156
+
+[node name="Npc" type="Area2D" unique_id=264556763]
+script = ExtResource("1_gcxii")
+
+[node name="Prompt" type="Label" parent="." unique_id=1921417171]
+texture_filter = 1
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 24.0
+offset_bottom = -17.0
+text = "話す"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=395715957]
+texture_filter = 1
+shape = SubResource("CircleShape2D_m16n6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1541986033]
+texture = ExtResource("2_gcxii")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

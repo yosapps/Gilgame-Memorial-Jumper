@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://yf2ol533j26m"]
+
+[ext_resource type="AudioStream" uid="uid://yx3k6pwddhki" path="res://assets/sounds/Flowing Rocks.ogg" id="1_oud7k"]
+
+[node name="BGM" type="AudioStreamPlayer"]
+stream = ExtResource("1_oud7k")
+volume_db = -14.599

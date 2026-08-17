@@ -1,0 +1,120 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccwphc16xdp1d"]
+
+[ext_resource type="Script" path="res://src/scripts/timeUI.gd" id="1_l3jd4"]
+[ext_resource type="Texture2D" uid="uid://cr1ivd7aqfj18" path="res://assets/sprites/UI/UI_Flat_Frame_01_Horizontal.png" id="2_4jsci"]
+[ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="3_gjxgw"]
+
+[node name="TimeUI" type="CanvasLayer"]
+script = ExtResource("1_l3jd4")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 42.0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_gjxgw")
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Pause" type="Panel" parent="."]
+visible = false
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -132.0
+offset_right = 105.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 54
+text = "PAUSED"
+vertical_alignment = 1
+
+[node name="Start" type="TextureButton" parent="Pause"]
+process_mode = 2
+layout_mode = 2
+offset_left = 471.5
+offset_top = 337.5
+offset_right = 680.5
+offset_bottom = 369.5
+texture_normal = ExtResource("2_4jsci")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Pause/Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_gjxgw")
+text = "閉じる"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Restart" type="TextureButton" parent="Pause"]
+process_mode = 2
+layout_mode = 2
+offset_left = 472.0
+offset_top = 384.0
+offset_right = 681.0
+offset_bottom = 416.0
+texture_normal = ExtResource("2_4jsci")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Pause/Restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_gjxgw")
+text = "リスタート"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="GoToMenu" type="TextureButton" parent="Pause"]
+process_mode = 2
+layout_mode = 2
+offset_left = 472.0
+offset_top = 432.0
+offset_right = 681.0
+offset_bottom = 464.0
+texture_normal = ExtResource("2_4jsci")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Pause/GoToMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_gjxgw")
+text = "タイトルに戻る"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Pause/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Pause/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Pause/GoToMenu" to="." method="_on_go_to_menu_pressed"]

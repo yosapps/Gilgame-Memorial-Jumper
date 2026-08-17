@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bh75ic2nl8be8"]
+
+[ext_resource type="Script" uid="uid://b4a01j3pue0h6" path="res://src/scripts/title.gd" id="1_n3q1k"]
+[ext_resource type="Texture2D" uid="uid://dcffgqdxm03rp" path="res://assets/sprites/layers/back.png" id="2_fj2i0"]
+[ext_resource type="SpriteFrames" uid="uid://bxrufkvn8c50o" path="res://assets/sprites/player/player.tres" id="3_ir70i"]
+[ext_resource type="Texture2D" uid="uid://cr1ivd7aqfj18" path="res://assets/sprites/UI/UI_Flat_Frame_01_Horizontal.png" id="5_22rvb"]
+[ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="6_w331d"]
+
+[node name="Title" type="Node2D" unique_id=1388332391]
+script = ExtResource("1_n3q1k")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=166702065]
+position = Vector2(574.4, 356)
+scale = Vector2(3.03333, 3.03333)
+texture = ExtResource("2_fj2i0")
+metadata/_edit_lock_ = true
+
+[node name="Gilgame" type="AnimatedSprite2D" parent="BG" unique_id=201673239]
+texture_filter = 1
+position = Vector2(0.197792, 51.099)
+scale = Vector2(1.3908, 1.3908)
+sprite_frames = ExtResource("3_ir70i")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HUB" type="CanvasLayer" parent="." unique_id=1128793789]
+
+[node name="Title" type="Label" parent="HUB" unique_id=712750222]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 92.0
+offset_right = 228.0
+offset_bottom = 253.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.219627, 0.445709, 1, 1)
+theme_override_fonts/font = ExtResource("6_w331d")
+theme_override_font_sizes/font_size = 56
+text = "ジャンプキング風
+チュートリアル"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartBtn" type="TextureButton" parent="HUB" unique_id=113681425]
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = 60.0
+offset_right = 107.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_22rvb")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUB/StartBtn" unique_id=772494885]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_w331d")
+theme_override_font_sizes/font_size = 20
+text = "ジャンプ！"
+horizontal_alignment = 1
+vertical_alignment = 1
+language = "jp"
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="HUB/StartBtn" to="." method="start_tutorial"]

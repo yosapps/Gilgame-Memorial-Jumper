@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5qkgn8rg8xsi"]
+
+[ext_resource type="Script" path="res://src/scripts/download.gd" id="1_ntb2x"]
+[ext_resource type="Texture2D" uid="uid://dcffgqdxm03rp" path="res://assets/sprites/layers/back.png" id="2_vty68"]
+[ext_resource type="Texture2D" uid="uid://i3o4gfp5h7hj" path="res://assets/sprites/UI/download-title.png" id="3_qmgng"]
+[ext_resource type="Texture2D" uid="uid://bjw8fuva5x5qh" path="res://assets/sprites/UI/Icons-App-Store-Google-play.png" id="5_ajwwj"]
+[ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="5_mn3tc"]
+[ext_resource type="Texture2D" uid="uid://cr1ivd7aqfj18" path="res://assets/sprites/UI/UI_Flat_Frame_01_Horizontal.png" id="8_5ddvd"]
+
+[node name="Download" type="Node2D"]
+script = ExtResource("1_ntb2x")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(574.4, 356)
+scale = Vector2(3.03333, 3.03333)
+texture = ExtResource("2_vty68")
+metadata/_edit_lock_ = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Download" type="Sprite2D" parent="UI"]
+position = Vector2(576, 80)
+scale = Vector2(0.396667, 0.396667)
+texture = ExtResource("3_qmgng")
+
+[node name="Panel" type="Panel" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -180.0
+offset_right = 436.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AppStore" type="Sprite2D" parent="UI"]
+position = Vector2(576, 265)
+scale = Vector2(0.249478, 0.249478)
+texture = ExtResource("5_ajwwj")
+region_enabled = true
+region_rect = Rect2(0, 0, 1600, 479.71)
+
+[node name="AppStoreBtn" type="Button" parent="UI/AppStore"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.000203705
+anchor_top = 0.000978474
+anchor_right = 0.731671
+anchor_bottom = 0.704528
+offset_left = -801.674
+offset_top = -224.469
+offset_right = -401.674
+offset_bottom = -112.469
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="GooglePlay" type="Sprite2D" parent="UI"]
+position = Vector2(577, 437)
+scale = Vector2(0.249478, 0.249478)
+texture = ExtResource("5_ajwwj")
+region_enabled = true
+region_rect = Rect2(-0.327415, 516.801, 1600.75, 476.057)
+
+[node name="PlayStoreBtn" type="Button" parent="UI/GooglePlay"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -802.0
+offset_top = -224.0
+offset_right = 801.0
+offset_bottom = 237.0
+
+[node name="backBtn" type="TextureButton" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -87.0
+offset_right = 72.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("8_5ddvd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UI/backBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_mn3tc")
+theme_override_font_sizes/font_size = 16
+text = "← BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="UI/AppStore/AppStoreBtn" to="." method="download_ios"]
+[connection signal="pressed" from="UI/GooglePlay/PlayStoreBtn" to="." method="download_android"]
+[connection signal="pressed" from="UI/backBtn" to="." method="go_back"]

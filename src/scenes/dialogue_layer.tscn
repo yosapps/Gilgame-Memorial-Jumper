@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dyvja41hb3l2l"]
+
+[ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="1_3to11"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_dialogue"]
+bg_color = Color(0.035, 0.055, 0.09, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.92, 0.72, 0.28, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_name"]
+bg_color = Color(0.92, 0.72, 0.28, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="DialogueLayer" type="CanvasLayer" unique_id=984624428]
+layer = 20
+
+[node name="DialogueBox" type="PanelContainer" parent="." unique_id=934989051]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = -190.0
+offset_right = -70.0
+offset_bottom = -35.0
+theme_override_styles/panel = SubResource("StyleBox_dialogue")
+
+[node name="Margin" type="MarginContainer" parent="DialogueBox" unique_id=672044631]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="DialogueBox/Margin" unique_id=1819540986]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Name" type="Label" parent="DialogueBox/Margin/VBox" unique_id=927088783]
+custom_minimum_size = Vector2(120, 27)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.08, 0.08, 0.1, 1)
+theme_override_fonts/font = ExtResource("1_3to11")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBox_name")
+text = "  老いた案内人"
+
+[node name="DialogueText" type="Label" parent="DialogueBox/Margin/VBox" unique_id=1991895571]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.96, 0.97, 1, 1)
+theme_override_fonts/font = ExtResource("1_3to11")
+theme_override_font_sizes/font_size = 18
+text = "会話テキスト"
+autowrap_mode = 2
+
+[node name="Footer" type="Label" parent="DialogueBox/Margin/VBox" unique_id=1884503515]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.72, 0.28, 1)
+theme_override_fonts/font = ExtResource("1_3to11")
+theme_override_font_sizes/font_size = 13
+text = "E / Enter  次へ"
+horizontal_alignment = 2
