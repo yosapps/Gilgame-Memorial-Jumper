@@ -8,7 +8,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.92, 0.72, 0.28, 1)
+border_color = Color(0, 0.8509804, 0.92156863, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -17,7 +17,7 @@ shadow_color = Color(0, 0, 0, 0.45)
 shadow_size = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_name"]
-bg_color = Color(0.92, 0.72, 0.28, 1)
+bg_color = Color(0.0014652925, 0.8525682, 0.9201204, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -27,7 +27,6 @@ corner_radius_bottom_left = 5
 layer = 20
 
 [node name="DialogueBox" type="PanelContainer" parent="." unique_id=934989051]
-visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -69,7 +68,7 @@ autowrap_mode = 2
 
 [node name="Footer" type="Label" parent="DialogueBox/Margin/VBox" unique_id=1884503515]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.72, 0.28, 1)
+theme_override_colors/font_color = Color(0, 0.8509804, 0.92156863, 1)
 theme_override_fonts/font = ExtResource("1_3to11")
 theme_override_font_sizes/font_size = 13
 text = "E / Enter  次へ"

@@ -12,12 +12,32 @@ func _ready():
 	GameTimeManager.stop_run()
 	Bgm.play()
 	Global.is_mobile_web = OS.has_feature("web_ios") || OS.has_feature("web_android")
+	$HUB/DevResetBtn.visible = _is_editor_runtime()
+	$HUB/Toast.hide()
 
 func start_tutorial():
 	if !ClickSound.playing: ClickSound.play()
 	Bgm.stop()
 	GameTimeManager.reset_timer()
 	get_tree().change_scene_to_file("res://src/scenes/tutorial.tscn")
+
+func open_memory_gallery() -> void:
+	if !ClickSound.playing: ClickSound.play()
+	get_tree().change_scene_to_file("res://src/scenes/memory_gallery.tscn")
+
+func request_dev_reset() -> void:
+	if not _is_editor_runtime(): return
+	$HUB/ResetConfirmation.popup_centered()
+
+func confirm_dev_reset() -> void:
+	if not _is_editor_runtime(): return
+	SaveManager.reset_all_data()
+	$HUB/Toast.text = "データをリセットしました"
+	$HUB/Toast.show()
+	get_tree().create_timer(2.5).timeout.connect($HUB/Toast.hide)
+
+func _is_editor_runtime() -> bool:
+	return OS.has_feature("editor")
 
 func donate():
 	OS.shell_open("https://buymeacoffee.com/yosapps")

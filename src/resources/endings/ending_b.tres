@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EndingData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://src/resources/ending_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/endings/ending_b/ending_b_01.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/endings/ending_b/ending_b_02.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/endings/ending_b/ending_b_03.png" id="4"]
+
+[resource]
+script = ExtResource("1")
+ending_id = &"ending_b"
+display_name = "THE LONG WAIT"
+gallery_label = "B"
+memory_images = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
+short_subtitle = "ずっと、待っていた。"
+seconds_per_image = 4.5
+transition_duration = 1.2

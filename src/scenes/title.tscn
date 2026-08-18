@@ -73,4 +73,82 @@ vertical_alignment = 1
 language = "jp"
 metadata/_edit_lock_ = true
 
+[node name="GalleryBtn" type="TextureButton" parent="HUB"]
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = 120.0
+offset_right = 107.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../StartBtn")
+texture_normal = ExtResource("5_22rvb")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUB/GalleryBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("6_w331d")
+theme_override_font_sizes/font_size = 18
+text = "メモリーギャラリー"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DevResetBtn" type="Button" parent="HUB"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 190.0
+offset_right = 130.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_w331d")
+text = "開発用：データリセット"
+
+[node name="ResetConfirmation" type="ConfirmationDialog" parent="HUB"]
+title = "データリセット"
+initial_position = 2
+size = Vector2i(520, 220)
+ok_button_text = "リセット"
+cancel_button_text = "キャンセル"
+dialog_text = "すべてのセーブデータをリセットしますか？\n\n取得したメモリー、クリア記録、\nエンディングなどのデータが削除されます。"
+
+[node name="Toast" type="Label" parent="HUB"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -75.0
+offset_right = 200.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.45, 1, 0.72, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("6_w331d")
+theme_override_font_sizes/font_size = 20
+text = "データをリセットしました"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="HUB/StartBtn" to="." method="start_tutorial"]
+[connection signal="pressed" from="HUB/GalleryBtn" to="." method="open_memory_gallery"]
+[connection signal="pressed" from="HUB/DevResetBtn" to="." method="request_dev_reset"]
+[connection signal="confirmed" from="HUB/ResetConfirmation" to="." method="confirm_dev_reset"]

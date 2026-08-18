@@ -2,6 +2,23 @@ extends Node
 
 signal ending_triggered(ending_id: StringName)
 var config: EndingConfig = preload("res://src/resources/endings/default_ending_config.tres")
+var ending_data: Array[EndingData] = [
+	preload("res://src/resources/endings/ending_a.tres"),
+	preload("res://src/resources/endings/ending_b.tres"),
+	preload("res://src/resources/endings/ending_c.tres"),
+]
+
+func get_ending_data(id: StringName) -> EndingData:
+	for data in ending_data:
+		if data.ending_id == id: return data
+	return null
+
+func get_gallery_endings() -> Array[EndingData]:
+	return ending_data.duplicate()
+
+func is_ending_unlocked(id: StringName) -> bool:
+	var unlocked: Array = SaveManager.current_data.get("endings_unlocked", [])
+	return unlocked.has(String(id))
 
 func determine_ending() -> StringName:
 	if config.require_complete_memory and not MemoryManager.memory_complete: return &"incomplete_memory"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EndingData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://src/resources/ending_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/endings/ending_a/ending_a_01.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/endings/ending_a/ending_a_02.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/endings/ending_a/ending_a_03.png" id="4"]
+
+[resource]
+script = ExtResource("1")
+ending_id = &"ending_a"
+display_name = "REUNION"
+gallery_label = "A"
+memory_images = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4")])
+short_subtitle = "ガロード……ただいま。"
+seconds_per_image = 4.5
+transition_duration = 1.2

@@ -1,5 +1,7 @@
 extends Node
 
+signal save_data_reset
+
 const SAVE_VERSION := 1
 const SAVE_PATH := "user://gilgame_memory_jumper_save.json"
 
@@ -39,3 +41,16 @@ func save_game() -> bool:
 func reset_save() -> void:
 	current_data = _default_data()
 	if FileAccess.file_exists(SAVE_PATH): DirAccess.remove_absolute(ProjectSettings.globalize_path(SAVE_PATH))
+
+## セーブと実行中の全進行状態を一度に初期化する唯一の入口です。
+func reset_all_data() -> void:
+	reset_save()
+	var memory_manager := get_node_or_null("/root/MemoryManager")
+	if memory_manager != null: memory_manager.reset_runtime_state()
+	var time_manager := get_node_or_null("/root/GameTimeManager")
+	if time_manager != null:
+		time_manager.reset_timer()
+		time_manager.stop_run()
+	var global := get_node_or_null("/root/Global")
+	if global != null: global.pending_ending = &""
+	save_data_reset.emit()

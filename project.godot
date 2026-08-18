@@ -17,9 +17,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="godottu-jumper-tutorial"
 run/main_scene="res://src/scenes/title.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-boot_splash/stretch_mode=0
+boot_splash/stretch_mode=2
 boot_splash/use_filter=false
-boot_splash/image="res://assets/sprites/unnamed.png"
+boot_splash/image="uid://b4qmf1fk5kwmv"
 
 [autoload]
 

@@ -15,4 +15,4 @@ func trigger_ending(id: StringName) -> void:
 		get_tree().change_scene_to_file("res://src/scenes/ending_scene.tscn")
 func reset_save() -> void:
 	if _allowed():
-		SaveManager.reset_save(); MemoryManager.collected_ids.clear(); MemoryManager.memory_complete = false; GameTimeManager.reset_timer()
+		SaveManager.reset_all_data()
