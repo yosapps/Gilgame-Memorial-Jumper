@@ -19,7 +19,10 @@ func start_tutorial():
 	if !ClickSound.playing: ClickSound.play()
 	Bgm.stop()
 	GameTimeManager.reset_timer()
-	get_tree().change_scene_to_file("res://src/scenes/tutorial.tscn")
+	if SaveManager.has_seen_opening():
+		get_tree().change_scene_to_file("res://src/scenes/tutorial.tscn")
+	else:
+		get_tree().change_scene_to_file("res://src/scenes/opening_fall_cutscene.tscn")
 
 func open_memory_gallery() -> void:
 	if !ClickSound.playing: ClickSound.play()

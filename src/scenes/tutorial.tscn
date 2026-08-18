@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://oj12lsct7omy" path="res://src/scenes/moving_platform.tscn" id="14_moving_platform"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="15_cutscene"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="16_menu"]
-[ext_resource type="PackedScene" path="res://src/scenes/memory_crystal.tscn" id="17_crystal"]
+[ext_resource type="PackedScene" uid="uid://opuuq77qgxks" path="res://src/scenes/memory_crystal.tscn" id="17_crystal"]
 [ext_resource type="Resource" path="res://src/resources/memories/memory_01.tres" id="18_m01"]
 [ext_resource type="Resource" path="res://src/resources/memories/memory_02.tres" id="19_m02"]
 [ext_resource type="Resource" path="res://src/resources/memories/memory_03.tres" id="20_m03"]
@@ -912,43 +912,43 @@ destination_offset = Vector2(91.125, -200)
 [node name="MemoryMenu" parent="." unique_id=1460770437 instance=ExtResource("16_menu")]
 
 [node name="MemoryCrystal01" parent="." unique_id=1809707273 instance=ExtResource("17_crystal")]
-position = Vector2(735, 500)
+position = Vector2(722, 509)
 data = ExtResource("18_m01")
 
 [node name="MemoryCrystal02" parent="." unique_id=1841021504 instance=ExtResource("17_crystal")]
-position = Vector2(785, 279)
+position = Vector2(785, 285)
 data = ExtResource("19_m02")
 
 [node name="MemoryCrystal03" parent="." unique_id=1416842904 instance=ExtResource("17_crystal")]
-position = Vector2(559, 69)
+position = Vector2(559, 78)
 data = ExtResource("20_m03")
 
 [node name="MemoryCrystal04" parent="." unique_id=1873918450 instance=ExtResource("17_crystal")]
-position = Vector2(367, -89)
+position = Vector2(367, -83)
 data = ExtResource("21_m04")
 
 [node name="MemoryCrystal05" parent="." unique_id=2120653753 instance=ExtResource("17_crystal")]
-position = Vector2(887, -168)
+position = Vector2(878, -162)
 data = ExtResource("22_m05")
 
 [node name="MemoryCrystal06" parent="." unique_id=2050520392 instance=ExtResource("17_crystal")]
-position = Vector2(455, -361)
+position = Vector2(445, -355)
 data = ExtResource("23_m06")
 
 [node name="MemoryCrystal07" parent="." unique_id=994355243 instance=ExtResource("17_crystal")]
-position = Vector2(527, -570)
+position = Vector2(526, -560)
 data = ExtResource("24_m07")
 
 [node name="MemoryCrystal08" parent="." unique_id=643714325 instance=ExtResource("17_crystal")]
-position = Vector2(780, -651)
+position = Vector2(785, -642)
 data = ExtResource("25_m08")
 
 [node name="MemoryCrystal09" parent="." unique_id=1105638373 instance=ExtResource("17_crystal")]
-position = Vector2(708, -813)
+position = Vector2(709, -802)
 data = ExtResource("26_m09")
 
 [node name="MemoryCrystal10" parent="." unique_id=458937200 instance=ExtResource("17_crystal")]
-position = Vector2(465, -809)
+position = Vector2(465, -801)
 data = ExtResource("27_m10")
 
 [connection signal="pressed" from="HUB/WinPanel/HBoxContainer/GoMenuBtn" to="." method="go_title"]

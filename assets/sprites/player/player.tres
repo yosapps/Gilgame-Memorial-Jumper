@@ -1,10 +1,10 @@
-[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://bxrufkvn8c50o"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bxrufkvn8c50o"]
 
 [ext_resource type="Texture2D" uid="uid://b30f4jk30bpvo" path="res://assets/sprites/player/giru-down/gilgame-down.png" id="1_w3fxo"]
-[ext_resource type="Texture2D" uid="uid://cv0iqmctphqi3" path="res://assets/sprites/player/giru-ldle/pixil-frame-0.png" id="2_bk34a"]
-[ext_resource type="Texture2D" uid="uid://duq0uqwk53685" path="res://assets/sprites/player/giru-ldle/pixil-frame-1.png" id="3_a0yvm"]
-[ext_resource type="Texture2D" uid="uid://dk0p1trro01k4" path="res://assets/sprites/player/giru-ldle/pixil-frame-2.png" id="4_8123j"]
-[ext_resource type="Texture2D" uid="uid://buguu64j16ype" path="res://assets/sprites/player/giru-ldle/pixil-frame-3.png" id="5_t5dda"]
+[ext_resource type="Texture2D" uid="uid://cv0iqmctphqi3" path="res://assets/sprites/player/giru-falling/pixil-frame-fall-0.png" id="2_a38ip"]
+[ext_resource type="Texture2D" uid="uid://duq0uqwk53685" path="res://assets/sprites/player/giru-falling/pixil-frame-fall-1.png" id="3_y6k7o"]
+[ext_resource type="Texture2D" uid="uid://dk0p1trro01k4" path="res://assets/sprites/player/giru-falling/pixil-frame-fall-2.png" id="4_qdmq3"]
+[ext_resource type="Texture2D" uid="uid://buguu64j16ype" path="res://assets/sprites/player/giru-falling/pixil-frame-fall-3.png" id="5_t5dda"]
 [ext_resource type="Texture2D" uid="uid://4ewkc73g4aaw" path="res://assets/sprites/player/giru-ldle/pixil-frame-4.png" id="6_x1lat"]
 [ext_resource type="Texture2D" uid="uid://cfv7id4eskebs" path="res://assets/sprites/player/giru-ldle/pixil-frame-5.png" id="7_qmrt4"]
 [ext_resource type="Texture2D" uid="uid://c2qr7aswtvv36" path="res://assets/sprites/player/giru-ldle/pixil-frame-6.png" id="8_1ox0y"]
@@ -31,23 +31,28 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_w3fxo")
 }],
-"loop": true,
+"loop": 1,
 "name": &"down",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_bk34a")
+"texture": ExtResource("2_a38ip")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_a0yvm")
+"texture": ExtResource("3_y6k7o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_8123j")
+"texture": ExtResource("4_qdmq3")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_t5dda")
+}],
+"loop": 1,
+"name": &"falling",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("6_x1lat")
 }, {
@@ -66,15 +71,15 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_ftbe3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("12_m5me0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jump-down",
 "speed": 5.0
 }, {
@@ -82,7 +87,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_as0ce")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jump-up",
 "speed": 5.0
 }, {
@@ -90,7 +95,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_76qqv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"prepare",
 "speed": 5.0
 }, {
@@ -125,7 +130,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("24_y58ru")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run",
 "speed": 15.0
 }]

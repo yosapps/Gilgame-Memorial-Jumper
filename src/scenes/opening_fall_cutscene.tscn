@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c3d0hy5cl1aot"]
+
+[ext_resource type="Script" uid="uid://dxxhmusdpdvi0" path="res://src/scripts/opening_fall_cutscene.gd" id="1"]
+
+[node name="OpeningFallCutscene" type="Control" unique_id=1179936123]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="BlackBackground" type="ColorRect" parent="." unique_id=402627905]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FallingParticleLayer" type="Node2D" parent="." unique_id=1975526472]
+
+[node name="GilgameContainer" type="Node2D" parent="." unique_id=669511862]
+
+[node name="CrystalLayer" type="Node2D" parent="." unique_id=1793744690]
+
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=1049221504]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

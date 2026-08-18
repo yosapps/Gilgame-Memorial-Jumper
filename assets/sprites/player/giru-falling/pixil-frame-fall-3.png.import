@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjf40jy0fbgwv"
-path="res://.godot/imported/pixil-frame-1.png-6dc8272c7a89b7fca6cca1e5c906ba97.ctex"
+uid="uid://buguu64j16ype"
+path="res://.godot/imported/pixil-frame-fall-3.png-1e3d725d4e73758672f41a1d8cbf340a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/giru-ldle/pixil-frame-1.png"
-dest_files=["res://.godot/imported/pixil-frame-1.png-6dc8272c7a89b7fca6cca1e5c906ba97.ctex"]
+source_file="res://assets/sprites/player/giru-falling/pixil-frame-fall-3.png"
+dest_files=["res://.godot/imported/pixil-frame-fall-3.png-1e3d725d4e73758672f41a1d8cbf340a.ctex"]
 
 [params]
 

@@ -1,170 +1,177 @@
 extends CharacterBody2D
 
-# プレイヤーの移動速度とジャンプの速度を設定
-@export var SPEED = 300
-@export var JUMP_VELOCITY = -500
+const MAX_JUMP_FORCE := 1.2
+const JOYSTICK_DEAD_ZONE := 0.005
+const LARGE_FALL_DISTANCE := 300.0
+const LANDING_ANIMATION_DURATION := 0.18
 
-# 入力用のUIコントロール（ジョイスティックとジャンプボタン）
-@export var joystick:Control
-@export var jump_touch:TouchScreenButton
+@export var SPEED := 300.0
+@export var JUMP_VELOCITY := -500.0
+@export var joystick: Control
+@export var jump_touch: TouchScreenButton
 
-# デフォルトの2D物理重力を取得
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var dust: CPUParticles2D = $Dust
+@onready var jump_bar: ProgressBar = $JumpBar
+@onready var jump_timer_node: Timer = $JumpTimer
+@onready var jump_sound: AudioStreamPlayer2D = $JumpSe
+@onready var hit_sound: AudioStreamPlayer2D = $HitSe
 
-# 一時的な速度の保存用変数
-var temp_velocity = Vector2.ZERO
+var gravity := float(ProjectSettings.get_setting("physics/2d/default_gravity"))
+var temp_velocity := Vector2.ZERO
 
-# ジャンプ関連の状態フラグと値
-var jump_mode = false
-var jump_force = 0
+# These names remain public because cutscenes and level components control them.
+var jump_mode := false
+var jump_force := 0.0
+var direction := 0.0
+var is_can_move := true
+var jump_timer := false
+var slide_mode := false
 
-# アニメーション状態と移動方向を追跡
-var player_anim = "idle"
-var direction = 0
+var _fall_start_y := 0.0
+var _was_on_floor := false
+var _landing_animation_left := 0.0
 
-# プレイヤーの最後のY位置とその更新状態
-var last_pos_y = -99999
-var is_last_posY = true
+func _ready() -> void:
+	_was_on_floor = is_on_floor()
+	_fall_start_y = global_position.y
+	_play_animation(&"idle")
 
-# 移動可能かどうかを制御するフラグ
-var is_can_move = true
+func _physics_process(delta: float) -> void:
+	_update_jump_charge(delta)
+	_handle_keyboard_jump()
+	_apply_gravity(delta)
+	direction = _get_movement_direction()
+	_apply_jump_takeoff_direction()
+	_apply_horizontal_velocity()
 
-# ジャンプタイマーとスライドモードのフラグ
-var jump_timer = false
-var slide_mode = false
-
-# 毎フレームの物理処理
-func _physics_process(delta):
-	# ジャンプモード中の処理
-	if jump_mode:
-		last_pos_y = position.y
-		jump_force += delta
-		$JumpBar.value = jump_force  # ジャンプバーの値を増加
-
-	# 地面にいない場合は重力を適用
-	if not is_on_floor():
-		if is_last_posY:
-			last_pos_y = position.y
-			is_last_posY = false
-		velocity.y += gravity * delta
-
-	# ジャンプの入力処理
-	if Input.is_action_just_pressed("jump") and is_on_floor() and is_can_move:
-		jump_mode = true
-		if Global.show_jump_bar:
-			$JumpBar.show()
-
-	# ジャンプ終了時の処理
-	if Input.is_action_just_released("jump") and is_on_floor():
-		if jump_force > 1.2:
-			jump_force = 1.2  # ジャンプ力の最大値を制限
-		velocity.y = JUMP_VELOCITY * jump_force
-		if jump_force > 0:
-			$JumpSe.playing = true  # ジャンプ音を再生
-		jump_mode = false
-		jump_timer = true
-		$JumpTimer.start()
-		$JumpBar.hide()
-		jump_force = 0
-
-	# 移動方向の取得
-	direction = 0
-	if is_on_floor() and is_can_move:
-		direction = Input.get_axis("left", "right")  # キー入力で方向を設定
-		if joystick.get_joystick().x > 0.005: # ジョイスティック入力で方向を設定
-			direction = 1
-		elif joystick.get_joystick().x < -0.005:
-			direction = -1
-
-	# ジャンプタイマー中の処理
-	if jump_timer and $JumpBar.value > 0 and is_can_move:
-		$JumpBar.value = 0
-		if $AnimatedSprite2D.flip_h:
-			direction = -1
-		else:
-			direction = 1
-
-	# 水平方向の速度設定
-	if direction and not jump_mode:
-		velocity.x = direction * SPEED
-		last_pos_y = position.y
-	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, SPEED)  # 停止時に速度を減少
-
-	# 衝突処理用の速度保存
 	temp_velocity = velocity
-
-	# 速度を適用してスライド移動
+	var was_on_floor := is_on_floor()
 	move_and_slide()
+	_handle_landing(was_on_floor)
+	_handle_air_collision()
+	_update_animation(delta)
+	_was_on_floor = is_on_floor()
 
-	# アニメーションの更新
-	update_animation()
+func _update_jump_charge(delta: float) -> void:
+	if not jump_mode: return
+	jump_force = minf(jump_force + delta, MAX_JUMP_FORCE)
+	jump_bar.value = jump_force
 
-	# 衝突処理（空中での壁への接触時）
-	if get_slide_collision_count() > 0 and not is_on_floor() and not slide_mode:
-		var collision = get_slide_collision(0)
-		if collision != null:
-			velocity = temp_velocity.bounce(collision.get_normal())  # 壁で跳ね返る
-			$HitSe.playing = true  # 衝突音を再生
+func _handle_keyboard_jump() -> void:
+	if Input.is_action_just_pressed("jump"):
+		_begin_jump()
+	if Input.is_action_just_released("jump"):
+		_release_jump()
 
-# プレイヤーのアニメーションを更新
-func update_animation():
-	if is_on_floor():
-		if jump_mode:
-			$Dust.emitting = false
-			$AnimatedSprite2D.play("prepare")
-		elif direction:
-			$Dust.emitting = true
-			$AnimatedSprite2D.play("run")
-			$AnimatedSprite2D.flip_v = false
-			$AnimatedSprite2D.flip_h = direction < 0
-		elif position.y > (last_pos_y + 300):
-			$AnimatedSprite2D.play("down")
-			$Dust.emitting = false
-		else:
-			$AnimatedSprite2D.play("idle")
-			$Dust.emitting = false
-	else:
-		if velocity.x != 0:
-			$AnimatedSprite2D.flip_v = false
-			if not slide_mode:
-				$AnimatedSprite2D.flip_h = velocity.x < 0
-		if velocity.y < 0:
-			$AnimatedSprite2D.play("jump-up")
-		else:
-			$AnimatedSprite2D.play("jump-down")
-		$Dust.emitting = false
+func _begin_jump() -> void:
+	if jump_mode or not is_on_floor() or not is_can_move: return
+	jump_mode = true
+	jump_force = 0.0
+	jump_bar.value = 0.0
+	if Global.show_jump_bar: jump_bar.show()
 
-# ジャンプバーを非表示にする
-func hide_jumpbar():
-	Global.show_jump_bar = false
-
-# ジャンプを開始する
-func start_jump():
-	if not jump_mode and is_on_floor():
-		jump_mode = true
-		if Global.show_jump_bar:
-			$JumpBar.show()
-
-# ジャンプを終了する
-func end_jump():
-	if jump_mode and is_on_floor():
-		if jump_force > 1.2:
-			jump_force = 1.2
+func _release_jump() -> void:
+	if not jump_mode or not is_on_floor(): return
+	jump_force = minf(jump_force, MAX_JUMP_FORCE)
+	if jump_force > 0.0:
 		velocity.y = JUMP_VELOCITY * jump_force
-		if jump_force > 0:
-			$JumpSe.playing = true
-		jump_mode = false
-		jump_timer = true
-		$JumpTimer.start()
-		$JumpBar.hide()
-		jump_force = 0
+		jump_sound.play()
+	jump_mode = false
+	jump_timer = true
+	jump_timer_node.start()
+	jump_bar.hide()
+	jump_force = 0.0
 
-# ジャンプタイマーのタイムアウト処理
-func _on_jump_timer_timeout():
+func _apply_gravity(delta: float) -> void:
+	if is_on_floor(): return
+	if _was_on_floor: _fall_start_y = global_position.y
+	velocity.y += gravity * delta
+
+func _get_movement_direction() -> float:
+	if not is_on_floor() or not is_can_move: return 0.0
+	var input_direction := Input.get_axis("left", "right")
+	if joystick != null and joystick.has_method("get_joystick"):
+		var joystick_x := float(joystick.get_joystick().x)
+		if absf(joystick_x) > JOYSTICK_DEAD_ZONE:
+			input_direction = signf(joystick_x)
+	return input_direction
+
+func _apply_jump_takeoff_direction() -> void:
+	if not jump_timer or jump_bar.value <= 0.0 or not is_can_move: return
+	jump_bar.value = 0.0
+	direction = -1.0 if animated_sprite.flip_h else 1.0
+
+func _apply_horizontal_velocity() -> void:
+	if not is_can_move:
+		velocity.x = 0.0
+		return
+	if direction != 0.0 and not jump_mode:
+		velocity.x = direction * SPEED
+	elif is_on_floor():
+		velocity.x = move_toward(velocity.x, 0.0, SPEED)
+
+func _handle_landing(was_on_floor: bool) -> void:
+	if was_on_floor or not is_on_floor(): return
+	var fall_distance := global_position.y - _fall_start_y
+	if fall_distance > LARGE_FALL_DISTANCE:
+		_landing_animation_left = LANDING_ANIMATION_DURATION
+	_fall_start_y = global_position.y
+
+func _handle_air_collision() -> void:
+	if get_slide_collision_count() <= 0 or is_on_floor() or slide_mode: return
+	var collision := get_slide_collision(0)
+	if collision == null: return
+	velocity = temp_velocity.bounce(collision.get_normal())
+	hit_sound.play()
+
+func _update_animation(delta: float) -> void:
+	_landing_animation_left = maxf(_landing_animation_left - delta, 0.0)
+	if is_on_floor():
+		_update_ground_animation()
+	else:
+		_update_air_animation()
+
+func _update_ground_animation() -> void:
+	if jump_mode:
+		dust.emitting = false
+		_play_animation(&"prepare")
+	elif direction != 0.0:
+		dust.emitting = true
+		animated_sprite.flip_v = false
+		animated_sprite.flip_h = direction < 0.0
+		_play_animation(&"run")
+	elif _landing_animation_left > 0.0:
+		dust.emitting = false
+		_play_animation(&"down")
+	else:
+		dust.emitting = false
+		_play_animation(&"idle")
+
+func _update_air_animation() -> void:
+	dust.emitting = false
+	if not is_zero_approx(velocity.x):
+		animated_sprite.flip_v = false
+		if not slide_mode: animated_sprite.flip_h = velocity.x < 0.0
+	_play_animation(&"jump-up" if velocity.y < 0.0 else &"jump-down")
+
+func _play_animation(animation_name: StringName) -> void:
+	if animated_sprite.animation != animation_name or not animated_sprite.is_playing():
+		animated_sprite.play(animation_name)
+
+func hide_jumpbar() -> void:
+	Global.show_jump_bar = false
+	jump_bar.hide()
+
+func start_jump() -> void:
+	_begin_jump()
+
+func end_jump() -> void:
+	_release_jump()
+
+func _on_jump_timer_timeout() -> void:
 	jump_timer = false
 
-# プレイヤーの向きを設定
-func flip_player(flip):
-	$AnimatedSprite2D.flip_v = false
-	$AnimatedSprite2D.flip_h = flip
+func flip_player(flip: bool) -> void:
+	animated_sprite.flip_v = false
+	animated_sprite.flip_h = flip

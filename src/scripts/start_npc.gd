@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var npc_name: String
 @export var dialogue: Array[String]
 
 var player_is_near := false
@@ -9,6 +10,7 @@ var page := 0
 @onready var player: Node = %Player
 @onready var prompt: Label = $Prompt
 @onready var dialogue_box: PanelContainer = %DialogueLayer/DialogueBox
+@onready var dialogue_name: Label = %DialogueLayer/DialogueBox/Margin/VBox/DialogueName
 @onready var dialogue_text: Label = %DialogueLayer/DialogueBox/Margin/VBox/DialogueText
 @onready var next_label: Label = %DialogueLayer/DialogueBox/Margin/VBox/Footer
 
@@ -36,6 +38,7 @@ func start_dialogue() -> void:
 	player.velocity = Vector2.ZERO
 	player.jump_mode = false
 	player.jump_force = 0
+	dialogue_name.text = npc_name
 	player.get_node("JumpBar").hide()
 	prompt.hide()
 	dialogue_box.show()
