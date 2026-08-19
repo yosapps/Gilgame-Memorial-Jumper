@@ -16,6 +16,18 @@ func trigger_ending(id: StringName) -> void:
 func reset_save() -> void:
 	if _allowed():
 		SaveManager.reset_all_data()
+func set_game_cleared(value: bool) -> void:
+	if _allowed():
+		SaveManager.current_data.game_cleared_once = value
+		SaveManager.save_game()
+func unlock_hard_mode() -> void:
+	if _allowed(): SaveManager.unlock_hard_mode()
+func play_credits(ending_id: StringName = &"ending_a") -> void:
+	if _allowed() and ending_id in [&"ending_a", &"ending_b", &"ending_c"]:
+		Global.pending_ending = ending_id
+		SaveManager.current_data.game_cleared_once = true
+		SaveManager.save_game()
+		get_tree().change_scene_to_file("res://src/scenes/credits.tscn")
 func load_stage(index: int) -> void:
 	if _allowed() and index >= 1 and index <= 10:
 		get_tree().change_scene_to_file("res://src/scenes/stages/memory/memory_stage_%02d.tscn" % index)

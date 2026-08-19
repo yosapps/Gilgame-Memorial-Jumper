@@ -55,7 +55,7 @@ func _ready() -> void:
 	fade_overlay.modulate.a = 0.0
 	fade_overlay.hide()
 	add_child(fade_overlay)
-	audio = AudioStreamPlayer.new(); add_child(audio)
+	audio = AudioStreamPlayer.new(); audio.bus = &"BGM"; add_child(audio)
 	background.hide()
 
 func _unhandled_input(event: InputEvent) -> void:

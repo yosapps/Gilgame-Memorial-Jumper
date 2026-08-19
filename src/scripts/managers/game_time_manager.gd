@@ -5,7 +5,10 @@ var running := false
 var pause_reasons: Array[StringName] = []
 
 func _ready() -> void:
-	total_seconds = float(SaveManager.current_data.get("play_time", 0.0))
+	load_active_progress()
+
+func load_active_progress() -> void:
+	total_seconds = float(SaveManager.get_active_progress().get("play_time", 0.0))
 
 func _process(delta: float) -> void:
 	if running and pause_reasons.is_empty() and not get_tree().paused: total_seconds += delta

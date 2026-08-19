@@ -43,6 +43,7 @@ var _was_on_floor := false
 var _holding_down_pose := false
 
 func _ready() -> void:
+	jump_bar.visible = false
 	_was_on_floor = is_on_floor()
 	_fall_start_y = global_position.y
 	_play_animation(&"idle")
@@ -80,7 +81,8 @@ func _begin_jump() -> void:
 	jump_mode = true
 	jump_force = 0.0
 	jump_bar.value = 0.0
-	if Global.show_jump_bar: jump_bar.show()
+	if Global.current_game_mode == Global.GameMode.NORMAL and Global.show_jump_bar:
+		jump_bar.show()
 
 func _release_jump() -> void:
 	if not jump_mode or not is_on_floor(): return
@@ -173,6 +175,9 @@ func _play_animation(animation_name: StringName) -> void:
 
 func _show_landing_speech() -> void:
 	landing_speech.text = LANDING_LINES.pick_random()
+	# The camera zooms the world 2x. Pixel-align the label after physics movement
+	# so the glyph atlas is not sampled between pixels while the player rests.
+	landing_speech.global_position = landing_speech.global_position.round()
 	landing_speech.show()
 	landing_speech_timer.start(LANDING_SPEECH_DURATION)
 

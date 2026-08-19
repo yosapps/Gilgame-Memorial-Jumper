@@ -62,17 +62,22 @@ one_shot = true
 [node name="LandingSpeech" type="Label" parent="." unique_id=67487886]
 visible = false
 z_index = 10
-offset_left = -72.0
-offset_top = -24.0
-offset_right = 72.0
+texture_filter = 1
+offset_left = -80.0
+offset_top = -32.0
+offset_right = 84.0
 offset_bottom = -15.0
-theme_override_colors/font_color = Color(1, 0.95, 0.82, 1)
-theme_override_colors/font_outline_color = Color(0.08, 0.06, 0.12, 1)
-theme_override_constants/outline_size = 3
+theme_override_colors/font_color = Color(0.8153629, 0.87990934, 0.97095495, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.75)
+theme_override_colors/font_outline_color = Color(0.12, 0.055, 0.025, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("26_speech_font")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 10
 text = "いたい…"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LandingSpeechTimer" type="Timer" parent="." unique_id=1221871087]
 wait_time = 3.0

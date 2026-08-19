@@ -415,10 +415,12 @@ process_mode = 3
 stream = ExtResource("3_xbseu")
 volume_db = -21.853
 autoplay = true
+bus = &"BGM"
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=925053350]
 stream = ExtResource("3_xbseu")
 volume_db = -4.986
+bus = &"BGM"
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=136907497]
 use_parent_material = true

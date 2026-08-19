@@ -12,12 +12,17 @@ var memory_complete := false
 
 func _ready() -> void:
 	for file_name in DirAccess.get_files_at(MEMORY_RESOURCE_DIR):
-		if not file_name.ends_with(".tres"): continue
+		if not file_name.begins_with("memory_") or not file_name.ends_with(".tres"): continue
 		var data := load(MEMORY_RESOURCE_DIR.path_join(file_name)) as MemoryCrystalData
 		if data != null and data.is_configured(): memories[data.crystal_id] = data
 		else: push_warning("Memory Resource could not be loaded: %s" % file_name)
-	for value in SaveManager.current_data.get("collected_crystal_ids", []): collected_ids.append(StringName(value))
-	memory_complete = bool(SaveManager.current_data.get("memory_complete", false))
+	reload_active_progress()
+
+func reload_active_progress() -> void:
+	collected_ids.clear()
+	var progress := SaveManager.get_active_progress()
+	for value in progress.get("collected_crystal_ids", []): collected_ids.append(StringName(value))
+	memory_complete = bool(progress.get("memory_complete", false))
 
 func can_collect(id: StringName) -> bool:
 	if not memories.has(id) or collected_ids.has(id): return false

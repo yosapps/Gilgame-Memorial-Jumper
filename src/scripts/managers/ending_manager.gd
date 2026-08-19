@@ -17,7 +17,7 @@ func get_gallery_endings() -> Array[EndingData]:
 	return ending_data.duplicate()
 
 func is_ending_unlocked(id: StringName) -> bool:
-	var unlocked: Array = SaveManager.current_data.get("endings_unlocked", [])
+	var unlocked: Array = SaveManager.get_active_progress().get("endings_unlocked", [])
 	return unlocked.has(String(id))
 
 func determine_ending() -> StringName:
@@ -30,12 +30,13 @@ func determine_ending() -> StringName:
 func trigger_ending(id: StringName = &"") -> StringName:
 	var result := determine_ending() if id.is_empty() else id
 	if not OS.is_debug_build() and not id.is_empty(): result = determine_ending()
-	var unlocked: Array = SaveManager.current_data.get("endings_unlocked", [])
+	var progress := SaveManager.get_active_progress()
+	var unlocked: Array = progress.get("endings_unlocked", [])
 	if not unlocked.has(String(result)): unlocked.append(String(result))
-	SaveManager.current_data.endings_unlocked = unlocked
-	var best := float(SaveManager.current_data.get("best_completion_time", -1.0))
+	progress.endings_unlocked = unlocked
+	var best := float(progress.get("best_completion_time", -1.0))
 	var current := GameTimeManager.get_total_seconds()
-	if best < 0.0 or current < best: SaveManager.current_data.best_completion_time = current
+	if best < 0.0 or current < best: progress.best_completion_time = current
 	SaveManager.save_game()
 	ending_triggered.emit(result)
 	return result

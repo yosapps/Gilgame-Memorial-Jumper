@@ -14,8 +14,8 @@ var collection_player: AudioStreamPlayer2D
 func _ready() -> void:
 	origin_y = position.y
 	player = get_tree().get_first_node_in_group("player") as Node2D
-	ambient_player = AudioStreamPlayer2D.new(); add_child(ambient_player)
-	collection_player = AudioStreamPlayer2D.new(); add_child(collection_player)
+	ambient_player = AudioStreamPlayer2D.new(); ambient_player.bus = &"SFX"; add_child(ambient_player)
+	collection_player = AudioStreamPlayer2D.new(); collection_player.bus = &"SFX"; add_child(collection_player)
 	if data == null:
 		push_warning("Memory Crystal has no data."); active = false; return
 	ambient_player.stream = data.ambient_sound

@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://cfc540larjt12" path="res://src/scripts/goal.gd" id="13_ks0a6"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="15_bvuo5"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="16_kvup4"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_02.tres" id="17_gnw6k"]
+[ext_resource type="Resource" uid="uid://jqb4yqm115y1" path="res://src/resources/memories/memory_02.tres" id="17_gnw6k"]
 [ext_resource type="PackedScene" uid="uid://opuuq77qgxks" path="res://src/scenes/memory_crystal.tscn" id="17_nh3vt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4r27"]
@@ -400,12 +400,14 @@ corner_radius_bottom_left = 5
 script = ExtResource("1_ksf8k")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1246435782]
+bus = &"BGM"
 process_mode = 3
 stream = ExtResource("2_sharp")
 volume_db = -21.853
 autoplay = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=925053350]
+bus = &"BGM"
 stream = ExtResource("2_sharp")
 volume_db = -4.986
 
@@ -607,8 +609,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Goal" type="Area2D" parent="." unique_id=638098515]
-visible = false
-position = Vector2(470, -884)
+position = Vector2(511, 506)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("13_ks0a6")
@@ -897,7 +898,7 @@ vertical_alignment = 1
 [node name="MemoryMenu" parent="." unique_id=1460770437 instance=ExtResource("16_kvup4")]
 
 [node name="MemoryCrystal" parent="." unique_id=41665212 node_paths=PackedStringArray("warp") instance=ExtResource("17_nh3vt")]
-position = Vector2(530, -802)
+position = Vector2(627, 522)
 data = ExtResource("17_gnw6k")
 warp = NodePath("../Goal")
 

@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="CreditsData" format=3 uid="uid://p8wdfy0qf47u"]
+
+[ext_resource type="Script" uid="uid://bormvsp0wkfl0" path="res://src/resources/credits_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://3ivj5atpgy74" path="res://src/resources/credit_section.gd" id="2"]
+
+[sub_resource type="Resource" id="Director"]
+script = ExtResource("2")
+role = "Game Director"
+
+[sub_resource type="Resource" id="Programming"]
+script = ExtResource("2")
+role = "Lead Programmer"
+
+[sub_resource type="Resource" id="Design"]
+script = ExtResource("2")
+role = "Game Design"
+
+[sub_resource type="Resource" id="Scenario"]
+script = ExtResource("2")
+role = "Scenario"
+
+[sub_resource type="Resource" id="Character"]
+script = ExtResource("2")
+role = "Character Design"
+
+[sub_resource type="Resource" id="Environment"]
+script = ExtResource("2")
+role = "Environment Design"
+
+[sub_resource type="Resource" id="UI"]
+script = ExtResource("2")
+role = "UI Design"
+
+[sub_resource type="Resource" id="Illustration"]
+script = ExtResource("2")
+role = "2D Illustration"
+
+[sub_resource type="Resource" id="Sound"]
+script = ExtResource("2")
+role = "Sound Design / Music"
+
+[sub_resource type="Resource" id="QA"]
+script = ExtResource("2")
+role = "Quality Assurance"
+
+[sub_resource type="Resource" id="Thanks"]
+script = ExtResource("2")
+role = "Special Thanks"
+
+[resource]
+script = ExtResource("1")
+sections = Array[ExtResource("2")]([SubResource("Director"), SubResource("Programming"), SubResource("Design"), SubResource("Scenario"), SubResource("Character"), SubResource("Environment"), SubResource("UI"), SubResource("Illustration"), SubResource("Sound"), SubResource("QA"), SubResource("Thanks")])

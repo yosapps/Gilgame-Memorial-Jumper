@@ -1,6 +1,7 @@
 class_name MemoryGalleryItem
 extends Button
 
+
 signal memory_selected(data: Resource)
 
 var memory_data: Resource
@@ -12,6 +13,11 @@ var memory_data: Resource
 func _ready() -> void:
 	pressed.connect(_on_pressed)
 	focus_mode = Control.FOCUS_ALL
+	mouse_entered.connect(_focus_from_mouse)
+
+func _focus_from_mouse() -> void:
+	if not disabled:
+		grab_focus()
 
 func setup(data: Resource, unlocked: bool, label_override := "") -> void:
 	memory_data = data

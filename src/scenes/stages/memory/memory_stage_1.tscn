@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="16_vga8r"]
 [ext_resource type="PackedScene" uid="uid://opuuq77qgxks" path="res://src/scenes/memory_crystal.tscn" id="17_i0idb"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="17_y2bji"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_01.tres" id="18_i0idb"]
+[ext_resource type="Resource" uid="uid://bis20twebrlej" path="res://src/resources/memories/memory_01.tres" id="18_i0idb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4r27"]
 texture = ExtResource("3_lqral")
@@ -398,10 +398,12 @@ process_mode = 3
 stream = ExtResource("2_aqfwx")
 volume_db = -21.853
 autoplay = true
+bus = &"BGM"
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=925053350]
 stream = ExtResource("2_aqfwx")
 volume_db = -4.986
+bus = &"BGM"
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=136907497]
 use_parent_material = true
@@ -601,7 +603,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Goal" type="Area2D" parent="." unique_id=638098515]
-position = Vector2(470, -884)
+position = Vector2(561, 511)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("13_s7v73")
@@ -620,7 +622,7 @@ shape = SubResource("RectangleShape2D_8nktc")
 metadata/_edit_lock_ = true
 
 [node name="Npc" parent="." unique_id=264556763 instance=ExtResource("14_fn7k7")]
-position = Vector2(504, 507)
+position = Vector2(330, 508)
 dialogue = Array[String](["おや、挑戦者かい？ この塔は、焦る者ほど下へ落ちる場所だ。", "A・Dキーか左右キーで移動。スペースを長押しして、離すとジャンプするぞ。", "空中では向きを変えられない。跳ぶ前に、着地点をよく見るんだ。", "失敗しても大丈夫。落ちた分だけ、次の一跳びがうまくなる。頂上で会おう！"])
 
 [node name="MemoryCutscene" parent="." unique_id=1783567837 instance=ExtResource("16_vga8r")]

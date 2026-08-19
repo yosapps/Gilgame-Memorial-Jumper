@@ -14,6 +14,8 @@ func _ready() -> void:
 	var cinematic := EndingManager.get_ending_data(ending)
 	if cinematic != null:
 		await $MemoryCutscene.play_sequence(cinematic, false)
+	if ending in [&"ending_a", &"ending_b", &"ending_c"]:
+		SaveManager.mark_game_cleared()
 	_show_result(ending)
 
 func _show_result(ending: StringName) -> void:
@@ -22,9 +24,8 @@ func _show_result(ending: StringName) -> void:
 	var title := Label.new(); title.text = content[0]; title.position = Vector2(176, 120); title.size = Vector2(800, 80); title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER; title.add_theme_font_size_override("font_size", 44); bg.add_child(title)
 	var text := Label.new(); text.text = content[1]; text.position = Vector2(176, 245); text.size = Vector2(800, 180); text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER; text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER; text.add_theme_font_size_override("font_size", 22); bg.add_child(text)
 	var time := Label.new(); time.text = "CLEAR TIME  " + GameTimeManager.get_formatted_time(); time.position = Vector2(376, 445); time.size = Vector2(400, 40); time.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER; bg.add_child(time)
-	var button := Button.new(); button.text = "タイトルへ"; button.position = Vector2(476, 525); button.size = Vector2(200, 48); button.pressed.connect(_go_title); bg.add_child(button)
+	var button := Button.new(); button.text = "クレジットへ"; button.position = Vector2(476, 525); button.size = Vector2(200, 48); button.pressed.connect(_go_credits); bg.add_child(button)
 	button.grab_focus()
 
-func _go_title() -> void:
-	Global.pending_ending = &""
-	get_tree().change_scene_to_file("res://src/scenes/title.tscn")
+func _go_credits() -> void:
+	get_tree().change_scene_to_file("res://src/scenes/credits.tscn")

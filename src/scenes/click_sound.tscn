@@ -5,3 +5,4 @@
 [node name="ClickSound" type="AudioStreamPlayer"]
 stream = ExtResource("1_khwka")
 volume_db = -7.965
+bus = &"SFX"

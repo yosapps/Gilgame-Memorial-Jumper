@@ -13,11 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://dyvja41hb3l2l" path="res://src/scenes/dialogue_layer.tscn" id="11_vna25"]
 [ext_resource type="PackedScene" uid="uid://04aknybexnsk" path="res://src/scenes/player.tscn" id="12_hada8"]
 [ext_resource type="Script" uid="uid://cfc540larjt12" path="res://src/scripts/goal.gd" id="13_r81rr"]
-[ext_resource type="PackedScene" uid="uid://dme773jdltbrw" path="res://src/scenes/npc.tscn" id="14_h40ko"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="15_qcyts"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="16_u2iu4"]
+[ext_resource type="Resource" path="res://src/resources/memories/memory_05.tres" id="17_gvrbx"]
 [ext_resource type="PackedScene" uid="uid://opuuq77qgxks" path="res://src/scenes/memory_crystal.tscn" id="17_nayf5"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_01.tres" id="18_do8wu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4r27"]
 texture = ExtResource("3_entkx")
@@ -401,12 +400,14 @@ corner_radius_bottom_left = 5
 script = ExtResource("1_muywu")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1246435782]
+bus = &"BGM"
 process_mode = 3
 stream = ExtResource("2_bu4mk")
 volume_db = -21.853
 autoplay = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=925053350]
+bus = &"BGM"
 stream = ExtResource("2_bu4mk")
 volume_db = -4.986
 
@@ -608,14 +609,13 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Goal" type="Area2D" parent="." unique_id=638098515]
-visible = false
-position = Vector2(470, -884)
+position = Vector2(511, 506)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("13_r81rr")
-destination_scene = "res://src/scenes/stages/memory/memory_stage_01.tscn"
+destination_scene = "uid://b11xoyxqioq1l"
 is_final_goal = false
-unlock_stage_index = 1
+unlock_stage_index = 6
 
 [node name="Goal" type="Sprite2D" parent="Goal" unique_id=1760898012]
 position = Vector2(0, -8)
@@ -893,17 +893,13 @@ text = "チュートリアル
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Npc" parent="." unique_id=264556763 instance=ExtResource("14_h40ko")]
-position = Vector2(504, 507)
-dialogue = Array[String](["おや、挑戦者かい？ この塔は、焦る者ほど下へ落ちる場所だ。", "A・Dキーか左右キーで移動。スペースを長押しして、離すとジャンプするぞ。", "空中では向きを変えられない。跳ぶ前に、着地点をよく見るんだ。", "失敗しても大丈夫。落ちた分だけ、次の一跳びがうまくなる。頂上で会おう！"])
-
 [node name="MemoryCutscene" parent="." unique_id=1783567837 instance=ExtResource("15_qcyts")]
 
 [node name="MemoryMenu" parent="." unique_id=1460770437 instance=ExtResource("16_u2iu4")]
 
 [node name="MemoryCrystal" parent="." unique_id=41665212 node_paths=PackedStringArray("warp") instance=ExtResource("17_nayf5")]
-position = Vector2(530, -802)
-data = ExtResource("18_do8wu")
+position = Vector2(627, 522)
+data = ExtResource("17_gvrbx")
 warp = NodePath("../Goal")
 
 [connection signal="pressed" from="HUB/WinPanel/HBoxContainer/GoMenuBtn" to="." method="go_title"]

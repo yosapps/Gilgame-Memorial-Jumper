@@ -1,9 +1,10 @@
 extends Node2D
 
 const ITEM_SCENE := preload("res://src/scenes/memory_gallery_item.tscn")
-@onready var grid: GridContainer = $UI/Margin/VBox/Grid
-@onready var counter: Label = $UI/Margin/VBox/Counter
-@onready var ending_grid: GridContainer = $UI/Margin/VBox/EndingGrid
+@onready var grid: GridContainer = $UI/Margin/Panel/VBox/Grid
+@onready var counter: Label = $UI/Margin/Panel/VBox/Counter
+@onready var ending_grid: GridContainer = $UI/Margin/Panel/VBox/EndingGrid
+@onready var back_button: Button = $UI/Margin/Panel/VBox/BackButton
 @onready var cutscene: CanvasLayer = $MemoryCutscene
 var selected_item: Control
 
@@ -12,7 +13,7 @@ func _ready() -> void:
 	_build_gallery()
 	var gallery_items := grid.get_children() + ending_grid.get_children()
 	var first_unlocked := gallery_items.filter(func(item: Control) -> bool: return not item.disabled)
-	if first_unlocked.is_empty(): $UI/Margin/VBox/BackButton.grab_focus()
+	if first_unlocked.is_empty(): back_button.grab_focus()
 	else: first_unlocked[0].grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:
