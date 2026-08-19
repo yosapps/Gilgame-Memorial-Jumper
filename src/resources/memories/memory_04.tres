@@ -1,8 +1,12 @@
-[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
 [ext_resource type="Texture2D" path="res://assets/memories/memory_04/memory_04_01.png" id="2_image"]
 [ext_resource type="Texture2D" path="res://assets/memories/memory_04/memory_04_02.png" id="3_image"]
+
+[ext_resource type="Texture2D" path="res://assets/memories/memory_04/memory_04_storybook_01.png" id="story_1"]
+[ext_resource type="Texture2D" path="res://assets/memories/memory_04/memory_04_storybook_02.png" id="story_2"]
+[ext_resource type="Texture2D" path="res://assets/memories/memory_04/memory_04_storybook_03.png" id="story_3"]
 
 [resource]
 script = ExtResource("1_data")
@@ -12,4 +16,5 @@ display_name = "芽生えた信頼"
 developer_description = "ギルガメが少しずつガロードを信頼し始める。"
 associated_dungeon_area = &"underground_forest"
 memory_images = Array[Texture2D]([ExtResource("2_image"), ExtResource("3_image")])
+storybook_memory_images = Array[Texture2D]([ExtResource("story_1"), ExtResource("story_2"), ExtResource("story_3")])
 expected_image_paths = PackedStringArray("res://assets/memories/memory_04/memory_04_01.png", "res://assets/memories/memory_04/memory_04_02.png")

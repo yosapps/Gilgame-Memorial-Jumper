@@ -3,7 +3,15 @@ extends CharacterBody2D
 const MAX_JUMP_FORCE := 1.2
 const JOYSTICK_DEAD_ZONE := 0.005
 const LARGE_FALL_DISTANCE := 300.0
-const LANDING_ANIMATION_DURATION := 0.18
+const LANDING_SPEECH_DURATION := 3.0
+const LANDING_LINES := [
+	"いたい…",
+	"うぅ…痛かった…",
+	"甲羅がじんじんする…",
+	"目が回るよ…",
+	"また落ちちゃった…",
+	"ちょっと休ませて…",
+]
 
 @export var SPEED := 300.0
 @export var JUMP_VELOCITY := -500.0
@@ -16,6 +24,8 @@ const LANDING_ANIMATION_DURATION := 0.18
 @onready var jump_timer_node: Timer = $JumpTimer
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSe
 @onready var hit_sound: AudioStreamPlayer2D = $HitSe
+@onready var landing_speech: Label = $LandingSpeech
+@onready var landing_speech_timer: Timer = $LandingSpeechTimer
 
 var gravity := float(ProjectSettings.get_setting("physics/2d/default_gravity"))
 var temp_velocity := Vector2.ZERO
@@ -30,7 +40,7 @@ var slide_mode := false
 
 var _fall_start_y := 0.0
 var _was_on_floor := false
-var _landing_animation_left := 0.0
+var _holding_down_pose := false
 
 func _ready() -> void:
 	_was_on_floor = is_on_floor()
@@ -66,6 +76,7 @@ func _handle_keyboard_jump() -> void:
 
 func _begin_jump() -> void:
 	if jump_mode or not is_on_floor() or not is_can_move: return
+	_clear_down_pose()
 	jump_mode = true
 	jump_force = 0.0
 	jump_bar.value = 0.0
@@ -107,6 +118,7 @@ func _apply_horizontal_velocity() -> void:
 		velocity.x = 0.0
 		return
 	if direction != 0.0 and not jump_mode:
+		_clear_down_pose()
 		velocity.x = direction * SPEED
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0.0, SPEED)
@@ -115,7 +127,8 @@ func _handle_landing(was_on_floor: bool) -> void:
 	if was_on_floor or not is_on_floor(): return
 	var fall_distance := global_position.y - _fall_start_y
 	if fall_distance > LARGE_FALL_DISTANCE:
-		_landing_animation_left = LANDING_ANIMATION_DURATION
+		_holding_down_pose = true
+		_show_landing_speech()
 	_fall_start_y = global_position.y
 
 func _handle_air_collision() -> void:
@@ -125,8 +138,7 @@ func _handle_air_collision() -> void:
 	velocity = temp_velocity.bounce(collision.get_normal())
 	hit_sound.play()
 
-func _update_animation(delta: float) -> void:
-	_landing_animation_left = maxf(_landing_animation_left - delta, 0.0)
+func _update_animation(_delta: float) -> void:
 	if is_on_floor():
 		_update_ground_animation()
 	else:
@@ -141,7 +153,7 @@ func _update_ground_animation() -> void:
 		animated_sprite.flip_v = false
 		animated_sprite.flip_h = direction < 0.0
 		_play_animation(&"run")
-	elif _landing_animation_left > 0.0:
+	elif _holding_down_pose:
 		dust.emitting = false
 		_play_animation(&"down")
 	else:
@@ -158,6 +170,17 @@ func _update_air_animation() -> void:
 func _play_animation(animation_name: StringName) -> void:
 	if animated_sprite.animation != animation_name or not animated_sprite.is_playing():
 		animated_sprite.play(animation_name)
+
+func _show_landing_speech() -> void:
+	landing_speech.text = LANDING_LINES.pick_random()
+	landing_speech.show()
+	landing_speech_timer.start(LANDING_SPEECH_DURATION)
+
+func _clear_down_pose() -> void:
+	_holding_down_pose = false
+
+func _on_landing_speech_timer_timeout() -> void:
+	landing_speech.hide()
 
 func hide_jumpbar() -> void:
 	Global.show_jump_bar = false

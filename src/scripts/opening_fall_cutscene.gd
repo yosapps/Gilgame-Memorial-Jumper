@@ -2,7 +2,6 @@ extends Control
 
 signal cutscene_finished
 
-const GAMEPLAY_SCENE := "res://src/scenes/tutorial.tscn"
 const GILGAME_FRAMES := preload("res://assets/sprites/player/player.tres")
 const EXPECTED_CRYSTAL_COUNT := 10
 
@@ -83,7 +82,7 @@ func _play_opening() -> void:
 	await finish.finished
 	cutscene_finished.emit()
 	SaveManager.mark_opening_seen()
-	get_tree().change_scene_to_file(GAMEPLAY_SCENE)
+	get_tree().change_scene_to_file(SaveManager.get_gameplay_start_scene())
 
 func _start_falling_motion() -> void:
 	_gilgame.rotation = PI

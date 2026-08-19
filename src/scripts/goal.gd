@@ -2,6 +2,9 @@ extends Area2D
 
 @export_range(0.2, 3.0, 0.05) var warp_duration := 1.1
 @export var warp_color := Color(0.35, 0.9, 1.0, 0.9)
+@export_file("*.tscn") var destination_scene := ""
+@export var is_final_goal := true
+@export_range(0, 10, 1) var unlock_stage_index := 0
 var _phase := 0.0
 var _warping := false
 
@@ -32,8 +35,11 @@ func _on_body_entered(body: Node2D) -> void:
 	body.velocity = Vector2.ZERO
 	body.jump_mode = false
 	body.jump_force = 0
-	GameTimeManager.stop_run()
-	Global.pending_ending = EndingManager.trigger_ending()
+	if is_final_goal:
+		GameTimeManager.stop_run()
+		Global.pending_ending = EndingManager.trigger_ending()
+	elif unlock_stage_index > 0:
+		SaveManager.unlock_stage(unlock_stage_index)
 	var flash := ColorRect.new()
 	flash.color = Color(0.72, 0.95, 1.0, 1.0)
 	flash.modulate.a = 0.0
@@ -52,4 +58,9 @@ func _on_body_entered(body: Node2D) -> void:
 	tween.tween_property(self, "scale", Vector2(1.5, 1.5), warp_duration)
 	tween.tween_property(flash, "modulate:a", 1.0, warp_duration)
 	await tween.finished
-	get_tree().change_scene_to_file("res://src/scenes/ending_scene.tscn")
+	if is_final_goal:
+		get_tree().change_scene_to_file("res://src/scenes/ending_scene.tscn")
+	elif not destination_scene.is_empty():
+		get_tree().change_scene_to_file(destination_scene)
+	else:
+		push_error("Goal destination_scene is empty.")

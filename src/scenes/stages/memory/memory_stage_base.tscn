@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b4v10wqcdakhc"]
+
+[ext_resource type="Script" uid="uid://dr0jnslhyi5h" path="res://src/scripts/memory_stage.gd" id="1"]
+[ext_resource type="TileSet" uid="uid://b8yga1q44si1o" path="res://assets/sprites/layers/main.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://04aknybexnsk" path="res://src/scenes/player.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://b7lqsdwp1ugpl" path="res://src/scenes/joystick.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://cr1ivd7aqfj18" path="res://assets/sprites/UI/UI_Flat_Frame_01_Horizontal.png" id="6"]
+[ext_resource type="PackedScene" uid="uid://ccwphc16xdp1d" path="res://src/scenes/timeUI.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="8"]
+
+[node name="MemoryStage" type="Node2D" unique_id=2030351205]
+script = ExtResource("1")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1222739316]
+layer = -100
+
+[node name="WorldBackground" type="ColorRect" parent="BackgroundLayer" unique_id=1011093936]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Terrain" type="TileMapLayer" parent="." unique_id=565005090]
+tile_set = ExtResource("2")
+
+[node name="Player" parent="." unique_id=1068186382 node_paths=PackedStringArray("joystick", "jump_touch") instance=ExtResource("3")]
+joystick = NodePath("../HUD/Joystick")
+jump_touch = NodePath("../HUD/Jump")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1576463094]
+position = Vector2(0, -64)
+zoom = Vector2(2, 2)
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=140185513]
+
+[node name="StageLabel" type="Label" parent="HUD" unique_id=145450648]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 500.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 18
+text = "MEMORY STAGE"
+
+[node name="Joystick" parent="HUD" unique_id=2131757323 instance=ExtResource("5")]
+offset_left = 24.0
+offset_top = 500.0
+offset_right = 164.0
+offset_bottom = 640.0
+
+[node name="Jump" type="TouchScreenButton" parent="HUD" unique_id=127481477]
+position = Vector2(980, 515)
+scale = Vector2(0.55, 0.55)
+texture_normal = ExtResource("6")
+
+[node name="MemoryCutscene" parent="." unique_id=1227563587 instance=ExtResource("4")]
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=2108281386]
+layer = 80
+
+[node name="Fade" type="ColorRect" parent="TransitionLayer" unique_id=68541571]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.68, 0.88, 1, 1)
+
+[node name="TimeUI" parent="." unique_id=64457130 instance=ExtResource("7")]
+
+[node name="MemoryMenu" parent="." unique_id=126329178 instance=ExtResource("8")]

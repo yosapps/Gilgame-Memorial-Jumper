@@ -3,9 +3,52 @@
 [ext_resource type="Script" uid="uid://b54j7e80qeycp" path="res://src/scripts/start_npc.gd" id="1_gcxii"]
 [ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="2_3063s"]
 [ext_resource type="Texture2D" uid="uid://bc0qdklqiwltx" path="res://assets/sprites/npcs/Enemy7.png" id="2_gcxii"]
+[ext_resource type="Texture2D" uid="uid://dkgs6ekcomw3k" path="res://assets/sprites/npcs/Enemy8.png" id="4_qxms7"]
+[ext_resource type="Texture2D" uid="uid://67omfr6ayv7e" path="res://assets/sprites/npcs/Enemy9.png" id="5_x3ggf"]
+[ext_resource type="Texture2D" uid="uid://bgbaalkj67446" path="res://assets/sprites/npcs/Enemy10.png" id="6_paohr"]
+[ext_resource type="Texture2D" uid="uid://dlcgx4dmaqrwy" path="res://assets/sprites/npcs/Enemy11.png" id="7_x66jx"]
+[ext_resource type="Texture2D" uid="uid://busn0g5y3huwf" path="res://assets/sprites/npcs/Enemy12.png" id="8_bd3yb"]
+[ext_resource type="Texture2D" uid="uid://dutdrpn5e1nbb" path="res://assets/sprites/npcs/Enemy13.png" id="9_py1jt"]
+[ext_resource type="Texture2D" uid="uid://ctw7sprhm65pa" path="res://assets/sprites/npcs/Enemy14.png" id="10_i7c7i"]
+[ext_resource type="Texture2D" uid="uid://dm7hbxl7ev80a" path="res://assets/sprites/npcs/Enemy15.png" id="11_4bn7m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m16n6"]
 radius = 40.792156
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m16n6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gcxii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qxms7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x3ggf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_paohr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_x66jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bd3yb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_py1jt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i7c7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4bn7m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Npc" type="Area2D" unique_id=264556763]
 script = ExtResource("1_gcxii")
@@ -29,6 +72,12 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1541986033]
 texture = ExtResource("2_gcxii")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=288694336]
+sprite_frames = SubResource("SpriteFrames_m16n6")
+autoplay = "default"
+frame = 2
+frame_progress = 0.90794486
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

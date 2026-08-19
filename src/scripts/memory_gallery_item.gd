@@ -20,12 +20,13 @@ func setup(data: Resource, unlocked: bool, label_override := "") -> void:
 	disabled = not unlocked
 	thumbnail.texture = null
 	if unlocked:
-		if data.memory_images.is_empty() or data.memory_images[0] == null:
+		var images: Array[Texture2D] = data.get_active_images() if data is MemoryCrystalData else data.memory_images
+		if images.is_empty() or images[0] == null:
 			push_warning("Gallery thumbnail is missing.")
 			locked_overlay.visible = true
 			question_mark.text = "?"
 		else:
-			thumbnail.texture = data.memory_images[0]
+			thumbnail.texture = images[0]
 
 func _on_pressed() -> void:
 	if not disabled and memory_data != null: memory_selected.emit(memory_data)

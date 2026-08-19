@@ -13,6 +13,8 @@ extends Resource
 
 @export_category("Visual Story")
 @export var memory_images: Array[Texture2D] = []
+@export var storybook_memory_images: Array[Texture2D] = []
+@export var prefer_storybook_images := true
 ## 仮画像をResource参照せず、アーティスト向けの配置予定先だけ記録します。
 @export var expected_image_paths: PackedStringArray = []
 @export_multiline var short_subtitle := ""
@@ -35,6 +37,12 @@ func is_configured() -> bool:
 	return not crystal_id.is_empty() and memory_index > 0 and not display_name.is_empty()
 
 
+func get_active_images() -> Array[Texture2D]:
+	if prefer_storybook_images and not storybook_memory_images.is_empty():
+		return storybook_memory_images
+	return memory_images
+
+
 func get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	if crystal_id.is_empty():
@@ -43,6 +51,6 @@ func get_configuration_warnings() -> PackedStringArray:
 		warnings.append("memory_index must be greater than zero.")
 	if display_name.is_empty():
 		warnings.append("display_name is required.")
-	if memory_images.is_empty():
+	if memory_images.is_empty() and storybook_memory_images.is_empty():
 		warnings.append("No memory images assigned; the cutscene will use visual placeholders.")
 	return warnings

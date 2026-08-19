@@ -622,6 +622,9 @@ position = Vector2(573, -880)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("11_l8w6u")
+destination_scene = "res://src/scenes/stages/memory/memory_stage_01.tscn"
+is_final_goal = false
+unlock_stage_index = 1
 
 [node name="Goal" type="Sprite2D" parent="Goal" unique_id=1760898012]
 position = Vector2(0, -8)
@@ -910,46 +913,6 @@ destination_offset = Vector2(91.125, -200)
 [node name="MemoryCutscene" parent="." unique_id=1783567837 instance=ExtResource("15_cutscene")]
 
 [node name="MemoryMenu" parent="." unique_id=1460770437 instance=ExtResource("16_menu")]
-
-[node name="MemoryCrystal01" parent="." unique_id=1809707273 instance=ExtResource("17_crystal")]
-position = Vector2(722, 509)
-data = ExtResource("18_m01")
-
-[node name="MemoryCrystal02" parent="." unique_id=1841021504 instance=ExtResource("17_crystal")]
-position = Vector2(785, 285)
-data = ExtResource("19_m02")
-
-[node name="MemoryCrystal03" parent="." unique_id=1416842904 instance=ExtResource("17_crystal")]
-position = Vector2(559, 78)
-data = ExtResource("20_m03")
-
-[node name="MemoryCrystal04" parent="." unique_id=1873918450 instance=ExtResource("17_crystal")]
-position = Vector2(367, -83)
-data = ExtResource("21_m04")
-
-[node name="MemoryCrystal05" parent="." unique_id=2120653753 instance=ExtResource("17_crystal")]
-position = Vector2(878, -162)
-data = ExtResource("22_m05")
-
-[node name="MemoryCrystal06" parent="." unique_id=2050520392 instance=ExtResource("17_crystal")]
-position = Vector2(445, -355)
-data = ExtResource("23_m06")
-
-[node name="MemoryCrystal07" parent="." unique_id=994355243 instance=ExtResource("17_crystal")]
-position = Vector2(526, -560)
-data = ExtResource("24_m07")
-
-[node name="MemoryCrystal08" parent="." unique_id=643714325 instance=ExtResource("17_crystal")]
-position = Vector2(785, -642)
-data = ExtResource("25_m08")
-
-[node name="MemoryCrystal09" parent="." unique_id=1105638373 instance=ExtResource("17_crystal")]
-position = Vector2(709, -802)
-data = ExtResource("26_m09")
-
-[node name="MemoryCrystal10" parent="." unique_id=458937200 instance=ExtResource("17_crystal")]
-position = Vector2(465, -801)
-data = ExtResource("27_m10")
 
 [connection signal="pressed" from="HUB/WinPanel/HBoxContainer/GoMenuBtn" to="." method="go_title"]
 [connection signal="pressed" from="HUB/WinPanel/HBoxContainer/ResetBtn" to="." method="reset"]

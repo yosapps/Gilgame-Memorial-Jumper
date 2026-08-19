@@ -40,7 +40,8 @@ func play_sequence(data: Resource, is_memory := false) -> void:
 	background.modulate.a = 0.0; background.show()
 	if data.memory_music != null: audio.stream = data.memory_music; audio.play()
 	await _fade(background, 1.0, data.transition_duration)
-	for texture in data.memory_images:
+	var playback_images: Array[Texture2D] = data.get_active_images() if data is MemoryCrystalData else data.memory_images
+	for texture in playback_images:
 		if skip_requested: break
 		if texture == null:
 			push_warning("Missing image in cinematic sequence."); continue

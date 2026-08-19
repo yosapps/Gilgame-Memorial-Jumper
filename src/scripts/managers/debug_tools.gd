@@ -16,3 +16,14 @@ func trigger_ending(id: StringName) -> void:
 func reset_save() -> void:
 	if _allowed():
 		SaveManager.reset_all_data()
+func load_stage(index: int) -> void:
+	if _allowed() and index >= 1 and index <= 10:
+		get_tree().change_scene_to_file("res://src/scenes/stages/memory/memory_stage_%02d.tscn" % index)
+func teleport_to_stage_top() -> void:
+	if not _allowed(): return
+	var stage := get_tree().current_scene
+	if stage != null and stage.has_method("debug_teleport_to_top"): stage.debug_teleport_to_top()
+func spawn_stage_warp() -> void:
+	if not _allowed(): return
+	var stage := get_tree().current_scene
+	if stage != null and stage.has_method("debug_spawn_warp"): stage.debug_spawn_warp()

@@ -1,9 +1,16 @@
-[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
 [ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_01.png" id="2_image"]
 [ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_02.png" id="3_image"]
 [ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_03.png" id="4_image"]
+
+[ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_storybook_01.png" id="story_1"]
+[ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_storybook_02.png" id="story_2"]
+[ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_storybook_03.png" id="story_3"]
+[ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_storybook_04.png" id="story_4"]
+[ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_storybook_05.png" id="story_5"]
+[ext_resource type="Texture2D" path="res://assets/memories/memory_10/memory_10_storybook_06.png" id="story_6"]
 
 [resource]
 script = ExtResource("1_data")
@@ -13,6 +20,7 @@ display_name = "時空の裂け目"
 developer_description = "地面が裂け、落ちかけたガロードをギルガメが救う。代わりにギルガメが時空の歪みへ落ちていく、最も強く感情的な記憶。"
 associated_dungeon_area = &"time_distortion"
 memory_images = Array[Texture2D]([ExtResource("3_image"), ExtResource("4_image"), ExtResource("2_image")])
+storybook_memory_images = Array[Texture2D]([ExtResource("story_1"), ExtResource("story_2"), ExtResource("story_3"), ExtResource("story_4"), ExtResource("story_5"), ExtResource("story_6")])
 expected_image_paths = PackedStringArray("res://assets/memories/memory_10/memory_10_02.png", "res://assets/memories/memory_10/memory_10_03.png", "res://assets/memories/memory_10/memory_10_01.png")
 short_subtitle = "ガロード……思い出した。"
 seconds_per_image = 5.0

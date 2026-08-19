@@ -20,7 +20,7 @@ func start_tutorial():
 	Bgm.stop()
 	GameTimeManager.reset_timer()
 	if SaveManager.has_seen_opening():
-		get_tree().change_scene_to_file("res://src/scenes/tutorial.tscn")
+		get_tree().change_scene_to_file(SaveManager.get_gameplay_start_scene())
 	else:
 		get_tree().change_scene_to_file("res://src/scenes/opening_fall_cutscene.tscn")
 
@@ -41,13 +41,3 @@ func confirm_dev_reset() -> void:
 
 func _is_editor_runtime() -> bool:
 	return OS.has_feature("editor")
-
-func donate():
-	OS.shell_open("https://buymeacoffee.com/yosapps")
-
-func homepage():
-	OS.shell_open("https://www.yosapps.com")
-			
-func go_download():
-	if !ClickSound.playing: ClickSound.play()
-	get_tree().change_scene_to_file("res://src/scenes/mobile.tscn")

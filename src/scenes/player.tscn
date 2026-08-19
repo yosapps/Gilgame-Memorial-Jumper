@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bnyumbpjprruw" path="res://src/scripts/player.gd" id="1_m0xk5"]
 [ext_resource type="SpriteFrames" uid="uid://bxrufkvn8c50o" path="res://assets/sprites/player/player.tres" id="2_lg0ra"]
 [ext_resource type="AudioStream" uid="uid://bxhlwu2dvcfmj" path="res://assets/sounds/cncl05.mp3" id="25_du75n"]
+[ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="26_speech_font"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rntjl"]
 height = 26.0
@@ -58,4 +59,24 @@ volume_db = -17.197
 wait_time = 0.05
 one_shot = true
 
+[node name="LandingSpeech" type="Label" parent="." unique_id=67487886]
+visible = false
+z_index = 10
+offset_left = -72.0
+offset_top = -24.0
+offset_right = 72.0
+offset_bottom = -15.0
+theme_override_colors/font_color = Color(1, 0.95, 0.82, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.06, 0.12, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("26_speech_font")
+theme_override_font_sizes/font_size = 6
+text = "いたい…"
+horizontal_alignment = 1
+
+[node name="LandingSpeechTimer" type="Timer" parent="." unique_id=1221871087]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="LandingSpeechTimer" to="." method="_on_landing_speech_timer_timeout"]

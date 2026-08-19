@@ -2,7 +2,7 @@ extends Node
 
 signal save_data_reset
 
-const SAVE_VERSION := 2
+const SAVE_VERSION := 3
 const SAVE_PATH := "user://gilgame_memory_jumper_save.json"
 
 var current_data: Dictionary = _default_data()
@@ -19,6 +19,8 @@ func _default_data() -> Dictionary:
 		"best_completion_time": -1.0,
 		"endings_unlocked": [],
 		"opening_cutscene_seen": false,
+		"highest_stage_unlocked": 1,
+		"completed_stage_ids": [],
 	}
 
 func has_seen_opening() -> bool:
@@ -27,6 +29,21 @@ func has_seen_opening() -> bool:
 func mark_opening_seen() -> bool:
 	current_data.opening_cutscene_seen = true
 	return save_game()
+
+func unlock_stage(stage_index: int) -> void:
+	current_data.highest_stage_unlocked = maxi(int(current_data.get("highest_stage_unlocked", 0)), clampi(stage_index, 0, 10))
+	save_game()
+
+func complete_stage(stage_id: StringName, next_stage_index: int) -> void:
+	var completed: Array = current_data.get("completed_stage_ids", [])
+	if not completed.has(String(stage_id)): completed.append(String(stage_id))
+	current_data.completed_stage_ids = completed
+	current_data.highest_stage_unlocked = maxi(int(current_data.get("highest_stage_unlocked", 0)), clampi(next_stage_index, 0, 10))
+	save_game()
+
+func get_gameplay_start_scene() -> String:
+	var stage := clampi(int(current_data.get("highest_stage_unlocked", 0)), 0, 10)
+	return "res://src/scenes/stages/memory/memory_stage_%d.tscn" % stage
 
 func load_game() -> Dictionary:
 	current_data = _default_data()
