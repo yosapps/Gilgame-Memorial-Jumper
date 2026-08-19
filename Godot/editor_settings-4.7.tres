@@ -1,4 +1,4 @@
-[gd_resource type="EditorSettings" format=3]
+[gd_resource type="EditorSettings" format=3 uid="uid://ckf28ea4ybwa2"]
 
 [resource]
 resource_local_to_scene = false
@@ -285,9 +285,7 @@ network/connection/network_mode = 0
 network/http_proxy/port = 8080
 network/tls/editor_tls_certificates = ""
 network/tls/enable_tls_v1.3 = true
-network/debug/remote_host = "127.0.0.1"
 network/debug/remote_port = 6007
-network/language_server/remote_host = "127.0.0.1"
 network/language_server/remote_port = 6005
 network/language_server/enable_smart_resolve = true
 network/language_server/show_native_symbols_in_editor = false

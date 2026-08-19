@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bh75ic2nl8be8"]
 
 [ext_resource type="Script" uid="uid://b4a01j3pue0h6" path="res://src/scripts/title.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://c08x6srmuw30a" path="res://assets/title/title_watercolor_background.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://22srejs8gscy" path="res://assets/title/title_watercolor_background.jpg" id="2_eoavt"]
 [ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="3"]
 [ext_resource type="Script" uid="uid://c0dceqd3lx7mi" path="res://src/scripts/ui/title_menu_button.gd" id="4"]
 
@@ -111,7 +111,7 @@ script = ExtResource("1")
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
-texture = ExtResource("2")
+texture = ExtResource("2_eoavt")
 expand_mode = 1
 stretch_mode = 6
 
@@ -170,17 +170,16 @@ text = "♦"
 horizontal_alignment = 1
 
 [node name="Menu" type="VBoxContainer" parent="HUB/Layout" unique_id=106770864]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.69
 anchor_top = 0.53
 anchor_right = 0.69
 anchor_bottom = 0.53
-offset_left = -165.0
-offset_top = -93.0
-offset_right = 165.0
-offset_bottom = 215.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -33.880005
+offset_top = -82.43997
+offset_right = 296.12
+offset_bottom = 225.56003
 theme_override_constants/separation = 8
 
 [node name="StartBtn" type="Button" parent="HUB/Layout/Menu" unique_id=768444653]

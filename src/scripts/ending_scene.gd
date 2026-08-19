@@ -5,6 +5,7 @@ extends Node2D
 @onready var story: Label = $UI/ResultPanel/Content/Story
 @onready var clear_time: Label = $UI/ResultPanel/Content/TimePanel/Time
 @onready var credits_button: Button = $UI/ResultPanel/Content/CreditsButton
+@onready var background_ending: TextureRect = $UI/Background
 
 var stories := {
 	&"ending_a": ["REUNION", "時空の外では、まだ短い時しか流れていなかった。\nガロードとギルガメは再び出会い、同じ夕焼けを眺めた。"],
@@ -25,6 +26,7 @@ func _ready() -> void:
 	_show_result(ending)
 
 func _show_result(ending: StringName) -> void:
+	background_ending.show()
 	var content: Array = stories.get(ending, stories[&"incomplete_memory"])
 	heading.text = String(content[0])
 	story.text = String(content[1])
