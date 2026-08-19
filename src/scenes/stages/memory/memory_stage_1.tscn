@@ -628,7 +628,7 @@ dialogue = Array[String](["おや、挑戦者かい？ この塔は、焦る者�
 [node name="MemoryMenu" parent="." unique_id=1460770437 instance=ExtResource("17_y2bji")]
 
 [node name="MemoryCrystal" parent="." unique_id=41665212 node_paths=PackedStringArray("warp") instance=ExtResource("17_i0idb")]
-position = Vector2(530, -802)
+position = Vector2(650, 517)
 data = ExtResource("18_i0idb")
 warp = NodePath("../Goal")
 
