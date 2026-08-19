@@ -15,4 +15,4 @@ developer_description = "ガロードが村外れで傷ついたギルガメを�
 associated_dungeon_area = &"abyss"
 memory_images = Array[Texture2D]([ExtResource("2_image"), ExtResource("3_image")])
 storybook_memory_images = Array[Texture2D]([ExtResource("story_1"), ExtResource("story_2"), ExtResource("story_3")])
-short_subtitle = "……誰だ？"
+short_subtitles = Array[String](["……誰だ？", "テスト", "なるほど"])

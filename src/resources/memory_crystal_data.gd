@@ -17,6 +17,9 @@ extends Resource
 @export var prefer_storybook_images := true
 ## 仮画像をResource参照せず、アーティスト向けの配置予定先だけ記録します。
 @export var expected_image_paths: PackedStringArray = []
+## Memory Imagesと同じIndexの字幕を設定します。空要素ならその画像は字幕なしです。
+@export var short_subtitles: Array[String] = []
+## 既存データ互換用。short_subtitlesが空の場合のみ全画像で使用します。
 @export_multiline var short_subtitle := ""
 @export_range(0.5, 30.0, 0.1, "or_greater") var seconds_per_image := 4.0
 @export_range(0.1, 5.0, 0.1, "or_greater") var transition_duration := 1.0
@@ -43,6 +46,14 @@ func get_active_images() -> Array[Texture2D]:
 	return memory_images
 
 
+func get_subtitle_for_image(image_index: int) -> String:
+	if not short_subtitles.is_empty():
+		if image_index >= 0 and image_index < short_subtitles.size():
+			return short_subtitles[image_index]
+		return ""
+	return short_subtitle
+
+
 func get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	if crystal_id.is_empty():
@@ -53,4 +64,7 @@ func get_configuration_warnings() -> PackedStringArray:
 		warnings.append("display_name is required.")
 	if memory_images.is_empty() and storybook_memory_images.is_empty():
 		warnings.append("No memory images assigned; the cutscene will use visual placeholders.")
+	var active_image_count := get_active_images().size()
+	if not short_subtitles.is_empty() and short_subtitles.size() != active_image_count:
+		warnings.append("short_subtitles should have the same number of entries as the active memory images.")
 	return warnings

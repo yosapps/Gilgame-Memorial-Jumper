@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://22srejs8gscy" path="res://assets/title/title_watercolor_background.jpg" id="2_eoavt"]
 [ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="3"]
 [ext_resource type="Script" uid="uid://c0dceqd3lx7mi" path="res://src/scripts/ui/title_menu_button.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://b4ts4ksflybq7" path="res://assets/sprites/title.png" id="5_shm1j"]
 
 [sub_resource type="StyleBoxFlat" id="ButtonNormal"]
 bg_color = Color(0.92, 0.82, 0.62, 0.88)
@@ -126,7 +127,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Title" type="Sprite2D" parent="HUB/Layout" unique_id=2005695253]
+position = Vector2(588, 137.99998)
+scale = Vector2(0.28027344, 0.2802734)
+texture = ExtResource("5_shm1j")
+metadata/_edit_lock_ = true
+
 [node name="JapaneseTitle" type="Label" parent="HUB/Layout" unique_id=1703303709]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_top = 42.0
@@ -138,11 +146,12 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 49
-text = "ギルガメの メモリージャンパー"
+text = "ギルガメのメモリージャンパー"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnglishTitle" type="Label" parent="HUB/Layout" unique_id=93562486]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 offset_top = 127.0
@@ -177,9 +186,9 @@ anchor_top = 0.53
 anchor_right = 0.69
 anchor_bottom = 0.53
 offset_left = -33.880005
-offset_top = -82.43997
+offset_top = -51.439972
 offset_right = 296.12
-offset_bottom = 225.56003
+offset_bottom = 256.56003
 theme_override_constants/separation = 8
 
 [node name="StartBtn" type="Button" parent="HUB/Layout/Menu" unique_id=768444653]
@@ -286,15 +295,16 @@ text = "散らばった記憶の欠片を集め、
 忘れてしまった大切な友達を思い出す。"
 
 [node name="Version" type="Label" parent="HUB/Layout" unique_id=1187303154]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -42.0
-offset_right = -22.0
-offset_bottom = -18.0
+offset_left = -115.0
+offset_top = -36.0
+offset_right = -17.0
+offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.94, 0.78, 1)

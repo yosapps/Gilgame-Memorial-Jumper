@@ -96,7 +96,7 @@ func play_sequence(data: Resource, is_memory := false) -> void:
 		if texture == null:
 			push_warning("Missing image in cinematic sequence."); continue
 		image_rect.texture = texture; image_rect.modulate.a = 1.0 if use_watercolor_memory_effect else 0.0; image_rect.scale = Vector2.ONE; image_rect.position = Vector2.ZERO
-		subtitle.text = data.short_subtitle
+		subtitle.text = data.get_subtitle_for_image(image_index) if data.has_method("get_subtitle_for_image") else data.short_subtitle
 		if use_watercolor_memory_effect:
 			image_rect.material = watercolor_material
 			var reveal_duration := first_brush_reveal_duration if image_index == 0 else following_brush_reveal_duration
