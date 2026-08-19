@@ -6,6 +6,8 @@ var is_mobile_web = false
 var show_jump_bar = true
 var pending_ending: StringName = &""
 var current_game_mode: GameMode = GameMode.NORMAL
+## Keeps startup-threaded scenes alive in Godot's resource cache.
+var startup_scene_cache: Dictionary = {}
 
 func set_game_mode(mode: GameMode) -> void:
 	current_game_mode = mode

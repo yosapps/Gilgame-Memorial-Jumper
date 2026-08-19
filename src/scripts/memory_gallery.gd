@@ -23,7 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _build_gallery() -> void:
 	for child in grid.get_children(): child.queue_free()
 	var memories := MemoryManager.get_all_memories()
-	counter.text = "%d / %d Memories" % [MemoryManager.get_collected_count(), MemoryManager.get_total_count()]
+	# counter.text = "%d / %d Memories" % [MemoryManager.get_collected_count(), MemoryManager.get_total_count()]
 	for data in memories:
 		var item := ITEM_SCENE.instantiate() as MemoryGalleryItem
 		grid.add_child(item)

@@ -1,0 +1,229 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://src/scripts/splash_screen.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/splash.png" id="2"]
+[ext_resource type="FontFile" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="3"]
+
+[sub_resource type="Shader" id="BackgroundShader"]
+code = "shader_type canvas_item;\n\nfloat sparkle(vec2 p, float seed) {\n\treturn pow(max(0.0, sin(p.x * 17.0 + seed) * sin(p.y * 13.0 - seed)), 18.0);\n}\n\nvoid fragment() {\n\tvec2 uv = UV;\n\tfloat radial = 1.0 - smoothstep(0.0, 0.78, distance(uv, vec2(0.5, 0.46)));\n\tfloat horizon = smoothstep(0.9, 0.1, uv.y);\n\tvec3 deep = vec3(0.012, 0.025, 0.075);\n\tvec3 blue = vec3(0.025, 0.12, 0.24);\n\tvec3 color = mix(deep, blue, radial * 0.72 + horizon * 0.08);\n\tfloat dust = sparkle(uv * 5.0, 1.7) + sparkle(uv.yx * 7.0, 4.2);\n\tcolor += vec3(0.12, 0.34, 0.58) * dust * (0.18 + 0.08 * sin(TIME));\n\tCOLOR = vec4(color, 1.0);\n}"
+
+[sub_resource type="ShaderMaterial" id="BackgroundMaterial"]
+shader = SubResource("BackgroundShader")
+
+[sub_resource type="StyleBoxFlat" id="ProgressBackground"]
+bg_color = Color(0.02, 0.06, 0.13, 0.88)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.24, 0.55, 0.83, 0.65)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="ProgressFill"]
+bg_color = Color(0.18, 0.69, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.1, 0.58, 1, 0.65)
+shadow_size = 5
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+material = SubResource("BackgroundMaterial")
+
+[node name="Halo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -270.0
+offset_right = 315.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08, 0.42, 0.82, 0.055)
+
+[node name="Center" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -245.0
+offset_right = 250.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LogoGlow" type="TextureRect" parent="Center"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 0.0
+offset_right = 467.0
+offset_bottom = 434.0
+pivot_offset = Vector2(217, 217)
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.18, 0.58, 1, 0.42)
+
+[node name="Logo" type="TextureRect" parent="Center"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 17.0
+offset_right = 450.0
+offset_bottom = 417.0
+pivot_offset = Vector2(200, 200)
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tagline" type="Label" parent="Center"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 420.0
+offset_right = 540.0
+offset_bottom = 463.0
+theme_override_colors/font_color = Color(0.72, 0.88, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 17
+text = "記憶の欠片が、物語を照らす。"
+horizontal_alignment = 1
+
+[node name="Sparkles" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sparkle1" type="Label" parent="Sparkles"]
+modulate = Color(1, 1, 1, 0.18)
+offset_left = 336.0
+offset_top = 160.0
+offset_right = 374.0
+offset_bottom = 198.0
+theme_override_colors/font_color = Color(0.45, 0.82, 1, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 25
+text = "✦"
+horizontal_alignment = 1
+
+[node name="Sparkle2" type="Label" parent="Sparkles"]
+modulate = Color(1, 1, 1, 0.18)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -370.0
+offset_top = 205.0
+offset_right = -330.0
+offset_bottom = 245.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 28
+text = "✧"
+horizontal_alignment = 1
+
+[node name="Sparkle3" type="Label" parent="Sparkles"]
+modulate = Color(1, 1, 1, 0.18)
+offset_left = 410.0
+offset_top = 390.0
+offset_right = 444.0
+offset_bottom = 424.0
+theme_override_colors/font_color = Color(0.34, 0.69, 1, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+text = "✦"
+horizontal_alignment = 1
+
+[node name="Sparkle4" type="Label" parent="Sparkles"]
+modulate = Color(1, 1, 1, 0.18)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -440.0
+offset_top = 402.0
+offset_right = -404.0
+offset_bottom = 438.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.48, 0.8, 1, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 23
+text = "✧"
+horizontal_alignment = 1
+
+[node name="Bottom" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -92.0
+offset_right = 210.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 9
+
+[node name="LoadingLabel" type="Label" parent="Bottom"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.63, 0.8, 0.96, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 14
+text = "記憶を読み込んでいます"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Bottom"]
+custom_minimum_size = Vector2(420, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("ProgressBackground")
+theme_override_styles/fill = SubResource("ProgressFill")
+value = 0.0
+show_percentage = false
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
