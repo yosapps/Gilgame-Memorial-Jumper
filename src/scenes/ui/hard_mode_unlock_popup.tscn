@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://src/scripts/ui/hard_mode_unlock_popup.gd" id="1"]
+[ext_resource type="FontFile" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="2"]
+[ext_resource type="Script" path="res://src/scripts/ui/title_menu_button.gd" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="PopupPanel"]
+bg_color = Color(0.94, 0.87, 0.72, 0.99)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.44, 0.27, 0.11, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+content_margin_left = 48.0
+content_margin_top = 34.0
+content_margin_right = 48.0
+content_margin_bottom = 34.0
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="Notice"]
+bg_color = Color(0.48, 0.28, 0.55, 0.1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.46, 0.24, 0.57, 0.55)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
+bg_color = Color(0.92, 0.82, 0.62, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.52, 0.31, 0.12, 0.9)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_color = Color(0.12, 0.07, 0.03, 0.4)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="ButtonFocus"]
+bg_color = Color(1, 0.91, 0.7, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.74, 0.49, 0.16, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_color = Color(0.45, 0.25, 0.06, 0.45)
+shadow_size = 6
+
+[node name="HardModeUnlockPopup" type="Control"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.03, 0.04, 0.76)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -210.0
+offset_right = 310.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PopupPanel")
+
+[node name="Content" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="Crystal" type="Label" parent="Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.53, 0.31, 0.74, 1)
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 34
+text = "♦"
+horizontal_alignment = 1
+
+[node name="Heading" type="Label" parent="Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.13, 0.32, 1)
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 31
+text = "― ハードモード解放 ―"
+horizontal_alignment = 1
+
+[node name="Notice" type="PanelContainer" parent="Panel/Content"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Notice")
+
+[node name="Message" type="Label" parent="Panel/Content/Notice"]
+custom_minimum_size = Vector2(0, 105)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.31, 0.21, 0.15, 1)
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 19
+text = "新たな記憶の旅が開かれました。\n\nタイトル画面から\n『ハードモードで遊ぶ』を選択できます。"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Panel/Content"]
+custom_minimum_size = Vector2(310, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.2, 0.14, 0.08, 1)
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonNormal")
+theme_override_styles/pressed = SubResource("ButtonFocus")
+theme_override_styles/focus = SubResource("ButtonFocus")
+text = "タイトルへ"
+script = ExtResource("3")
+
+[connection signal="pressed" from="Panel/Content/CloseButton" to="." method="_on_close_button_pressed"]

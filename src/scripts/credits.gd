@@ -1,6 +1,7 @@
 extends Control
 
 const CREDITS_DATA: CreditsData = preload("res://src/resources/credits/default_credits.tres")
+const HARD_MODE_POPUP_SCENE := preload("res://src/scenes/ui/hard_mode_unlock_popup.tscn")
 
 var image_a: TextureRect
 var image_b: TextureRect
@@ -138,13 +139,11 @@ func _fade_to_black() -> void:
 	await tween.finished
 
 func _show_hard_mode_popup() -> void:
-	var popup := AcceptDialog.new()
-	popup.title = "ハードモード解放"
-	popup.dialog_text = "ハードモードが遊べるようになりました。\nタイトル画面から『ハードモードで遊ぶ』を選択できます。"
-	popup.ok_button_text = "OK"
+	var popup := HARD_MODE_POPUP_SCENE.instantiate()
 	add_child(popup)
-	popup.popup_centered(Vector2i(560, 230))
-	await popup.confirmed
+	popup.show_popup()
+	await popup.dismissed
+	popup.queue_free()
 
 func _return_to_title() -> void:
 	Global.pending_ending = &""

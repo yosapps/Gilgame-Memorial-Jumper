@@ -1,5 +1,11 @@
 extends Node2D
 
+@onready var result_panel: PanelContainer = $UI/ResultPanel
+@onready var heading: Label = $UI/ResultPanel/Content/Heading
+@onready var story: Label = $UI/ResultPanel/Content/Story
+@onready var clear_time: Label = $UI/ResultPanel/Content/TimePanel/Time
+@onready var credits_button: Button = $UI/ResultPanel/Content/CreditsButton
+
 var stories := {
 	&"ending_a": ["REUNION", "時空の外では、まだ短い時しか流れていなかった。\nガロードとギルガメは再び出会い、同じ夕焼けを眺めた。"],
 	&"ending_b": ["THE LONG WAIT", "長い年月を越え、年老いたガロードは親友を見つけた。\n彼は生涯ずっと、ギルガメの帰りを信じていた。"],
@@ -20,12 +26,20 @@ func _ready() -> void:
 
 func _show_result(ending: StringName) -> void:
 	var content: Array = stories.get(ending, stories[&"incomplete_memory"])
-	var bg := ColorRect.new(); bg.color = Color(0.025, 0.04, 0.08); bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); $UI.add_child(bg)
-	var title := Label.new(); title.text = content[0]; title.position = Vector2(176, 120); title.size = Vector2(800, 80); title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER; title.add_theme_font_size_override("font_size", 44); bg.add_child(title)
-	var text := Label.new(); text.text = content[1]; text.position = Vector2(176, 245); text.size = Vector2(800, 180); text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER; text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER; text.add_theme_font_size_override("font_size", 22); bg.add_child(text)
-	var time := Label.new(); time.text = "CLEAR TIME  " + GameTimeManager.get_formatted_time(); time.position = Vector2(376, 445); time.size = Vector2(400, 40); time.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER; bg.add_child(time)
-	var button := Button.new(); button.text = "クレジットへ"; button.position = Vector2(476, 525); button.size = Vector2(200, 48); button.pressed.connect(_go_credits); bg.add_child(button)
-	button.grab_focus()
+	heading.text = String(content[0])
+	story.text = String(content[1])
+	clear_time.text = "CLEAR TIME   %s" % GameTimeManager.get_formatted_time()
+	result_panel.modulate.a = 0.0
+	result_panel.scale = Vector2(0.97, 0.97)
+	result_panel.show()
+	await get_tree().process_frame
+	result_panel.pivot_offset = result_panel.size * 0.5
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(result_panel, "modulate:a", 1.0, 0.3)
+	tween.tween_property(result_panel, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_SINE)
+	credits_button.grab_focus()
 
 func _go_credits() -> void:
+	if not ClickSound.playing:
+		ClickSound.play()
 	get_tree().change_scene_to_file("res://src/scenes/credits.tscn")
