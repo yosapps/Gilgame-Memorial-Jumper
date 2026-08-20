@@ -23,6 +23,7 @@ func _ready() -> void:
 	collection_player.stream = data.collection_sound
 	if MemoryManager.is_collected(data.crystal_id):
 		warp.show()
+		warp.process_mode = Node.PROCESS_MODE_INHERIT
 		queue_free()
 	else:
 		warp.hide()
@@ -56,6 +57,7 @@ func _on_body_entered(body: Node2D) -> void:
 	else: await cutscene.play_memory(data)
 	MemoryManager.collect_memory(data.crystal_id)
 	warp.show()
+	warp.process_mode = Node.PROCESS_MODE_INHERIT
 	queue_free()
 
 func _lock_player(target: Node, lock: bool) -> void:

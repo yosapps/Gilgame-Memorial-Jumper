@@ -65,23 +65,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Halo" type="ColorRect" parent="." unique_id=1334447760]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -315.0
-offset_top = -270.0
-offset_right = 315.0
-offset_bottom = 270.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.08, 0.42, 0.82, 0.055)
+metadata/_edit_lock_ = true
 
 [node name="Center" type="Control" parent="." unique_id=86140453]
 layout_mode = 1
@@ -146,6 +147,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Sparkle1" type="Label" parent="Sparkles" unique_id=942373967]
 modulate = Color(1, 1, 1, 0.18)
@@ -245,3 +247,4 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true

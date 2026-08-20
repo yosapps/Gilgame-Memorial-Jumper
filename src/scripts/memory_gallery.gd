@@ -52,4 +52,5 @@ func _play_ending(data: EndingData, item: Control) -> void:
 
 func _go_back() -> void:
 	if !ClickSound.playing: ClickSound.play()
+	Global.request_title_without_fade()
 	get_tree().change_scene_to_file("res://src/scenes/title.tscn")

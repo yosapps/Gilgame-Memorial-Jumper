@@ -2,6 +2,8 @@ extends Node2D
 
 const POPUP_ANIMATION_SECONDS := 0.2
 
+@export_range(0.0, 10.0, 0.05) var scene_fade_in_seconds := 1.2
+
 @onready var menu: VBoxContainer = $HUB/Layout/Menu
 @onready var start_button: Button = $HUB/Layout/Menu/StartBtn
 @onready var hard_mode_button: Button = $HUB/Layout/Menu/HardModeBtn
@@ -17,13 +19,39 @@ const POPUP_ANIMATION_SECONDS := 0.2
 
 var active_popup: Control
 var popup_tween: Tween
+var scene_fade_tween: Tween
+var scene_fade_layer: CanvasLayer
+var scene_fade_overlay: ColorRect
 var previous_focus: Control
 
+func _enter_tree() -> void:
+	if Global.consume_title_fade_skip():
+		return
+	# Build the cover before child nodes enter and before the first frame is
+	# rendered. Creating it in _ready() allowed the bright title background to
+	# appear for a single frame during the scene swap.
+	scene_fade_layer = CanvasLayer.new()
+	scene_fade_layer.layer = 100
+	scene_fade_layer.name = "SceneFadeIn"
+	add_child(scene_fade_layer)
+	scene_fade_overlay = ColorRect.new()
+	scene_fade_overlay.color = Color.BLACK
+	scene_fade_overlay.modulate.a = 1.0
+	scene_fade_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	scene_fade_layer.add_child(scene_fade_overlay)
+	scene_fade_overlay.position = Vector2.ZERO
+	scene_fade_overlay.size = get_viewport_rect().size
+	scene_fade_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
 func _ready() -> void:
+	_play_scene_fade_in()
 	SaveManager.activate_game_mode(Global.GameMode.NORMAL)
 	GameTimeManager.stop_run()
 	SaveManager.apply_audio_settings()
-	Bgm.play()
+	# Bgm is an Autoload. Preserve its playback position when returning from
+	# screens such as the memory gallery instead of restarting the same track.
+	if not Bgm.playing:
+		Bgm.play()
 	Global.is_mobile_web = OS.has_feature("web_ios") or OS.has_feature("web_android")
 	$HUB/DevResetBtn.visible = _is_editor_runtime()
 	hard_mode_button.visible = SaveManager.is_hard_mode_unlocked()
@@ -36,6 +64,15 @@ func _ready() -> void:
 	options_popup.hide()
 	$HUB/Toast.hide()
 	start_button.grab_focus()
+
+func _play_scene_fade_in() -> void:
+	if scene_fade_overlay == null or scene_fade_layer == null:
+		return
+	scene_fade_tween = scene_fade_overlay.create_tween()
+	# Linear interpolation keeps the visual fade active for the full configured
+	# duration. Ease-out made most opacity disappear at the very beginning.
+	scene_fade_tween.tween_property(scene_fade_overlay, "modulate:a", 0.0, scene_fade_in_seconds).set_trans(Tween.TRANS_LINEAR)
+	scene_fade_tween.finished.connect(scene_fade_layer.queue_free)
 
 func start_tutorial() -> void:
 	_start_game(Global.GameMode.NORMAL)

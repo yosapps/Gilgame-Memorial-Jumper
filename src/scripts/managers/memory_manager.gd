@@ -5,17 +5,31 @@ signal memory_sequence_started(data: MemoryCrystalData)
 signal memory_sequence_finished(data: MemoryCrystalData)
 signal all_memories_collected
 
-const MEMORY_RESOURCE_DIR := "res://src/resources/memories"
+## Keep explicit references so Resources remain discoverable in exported builds.
+## Directory enumeration can expose exported files as `.tres.remap` instead of `.tres`.
+const MEMORY_RESOURCES := [
+	preload("res://src/resources/memories/memory_01.tres"),
+	preload("res://src/resources/memories/memory_02.tres"),
+	preload("res://src/resources/memories/memory_03.tres"),
+	preload("res://src/resources/memories/memory_04.tres"),
+	preload("res://src/resources/memories/memory_05.tres"),
+	preload("res://src/resources/memories/memory_06.tres"),
+	preload("res://src/resources/memories/memory_07.tres"),
+	preload("res://src/resources/memories/memory_08.tres"),
+	preload("res://src/resources/memories/memory_09.tres"),
+	preload("res://src/resources/memories/memory_10.tres"),
+]
 var memories: Dictionary = {}
 var collected_ids: Array[StringName] = []
 var memory_complete := false
 
 func _ready() -> void:
-	for file_name in DirAccess.get_files_at(MEMORY_RESOURCE_DIR):
-		if not file_name.begins_with("memory_") or not file_name.ends_with(".tres"): continue
-		var data := load(MEMORY_RESOURCE_DIR.path_join(file_name)) as MemoryCrystalData
-		if data != null and data.is_configured(): memories[data.crystal_id] = data
-		else: push_warning("Memory Resource could not be loaded: %s" % file_name)
+	for resource in MEMORY_RESOURCES:
+		var data := resource as MemoryCrystalData
+		if data != null and data.is_configured():
+			memories[data.crystal_id] = data
+		else:
+			push_warning("Memory Resource is missing or incorrectly configured.")
 	reload_active_progress()
 
 func reload_active_progress() -> void:
