@@ -32,7 +32,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	elapsed += delta
 	var dot_count := int(elapsed * 2.5) % 4
-	loading_label.text = "記憶を読み込んでいます" + ".".repeat(dot_count)
+	loading_label.text = "データを読み込んでいます" + ".".repeat(dot_count)
 
 func _start_scene_loading() -> void:
 	for path in BASE_PRELOAD_PATHS:
