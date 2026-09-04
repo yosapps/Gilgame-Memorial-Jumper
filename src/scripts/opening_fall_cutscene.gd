@@ -88,9 +88,9 @@ func _start_falling_motion() -> void:
 	_gilgame.rotation = PI
 	var drift := create_tween().set_loops()
 	drift.tween_property($GilgameContainer, "position:x", size.x * 0.5 - 16.0, 1.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	drift.parallel().tween_property(_gilgame, "rotation", 3, 1.35).set_trans(Tween.TRANS_SINE)
+	drift.parallel().tween_property(_gilgame, "rotation", 3.0, 1.35).set_trans(Tween.TRANS_SINE)
 	drift.tween_property($GilgameContainer, "position:x", size.x * 0.5 + 16.0, 1.55).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	drift.parallel().tween_property(_gilgame, "rotation", 3.5, 1.55).set_trans(Tween.TRANS_SINE)
+	drift.parallel().tween_property(_gilgame, "rotation", 3.2, 1.55).set_trans(Tween.TRANS_SINE)
 
 func _scatter_crystal(index: int) -> void:
 	var crystal := _create_crystal(index == EXPECTED_CRYSTAL_COUNT - 1)

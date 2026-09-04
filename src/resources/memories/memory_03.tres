@@ -1,12 +1,10 @@
-[gd_resource type="Resource" script_class="MemoryCrystalData" load_steps=7 format=3]
+[gd_resource type="Resource" script_class="MemoryCrystalData" format=3 uid="uid://c16ovgxoggkup"]
 
-[ext_resource type="Script" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
-[ext_resource type="Texture2D" path="res://assets/memories/memory_03/memory_03_01.png" id="2_image"]
-[ext_resource type="Texture2D" path="res://assets/memories/memory_03/memory_03_02.png" id="3_image"]
-
-[ext_resource type="Texture2D" path="res://assets/memories/memory_03/memory_03_storybook_01.png" id="story_1"]
-[ext_resource type="Texture2D" path="res://assets/memories/memory_03/memory_03_storybook_02.png" id="story_2"]
-[ext_resource type="Texture2D" path="res://assets/memories/memory_03/memory_03_storybook_03.png" id="story_3"]
+[ext_resource type="Script" uid="uid://dbr1g8r2nvjmd" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
+[ext_resource type="Texture2D" uid="uid://xngxk1501ms6" path="res://assets/memories/memory_03/memory_03_01.png" id="2_image"]
+[ext_resource type="Texture2D" uid="uid://rliv8q3h0dfq" path="res://assets/memories/memory_03/memory_03_02.png" id="3_image"]
+[ext_resource type="Texture2D" uid="uid://di4bn4bwsj80s" path="res://assets/memories/memory_03/memory_03_storybook_01.png" id="story_1"]
+[ext_resource type="Texture2D" uid="uid://dhhbewisw6okl" path="res://assets/memories/memory_03/memory_03_storybook_02.png" id="story_2"]
 
 [resource]
 script = ExtResource("1_data")
@@ -16,5 +14,5 @@ display_name = "はじめての食事"
 developer_description = "ガロードがギルガメに初めて食べ物を分け与える。"
 associated_dungeon_area = &"ancient_ruins"
 memory_images = Array[Texture2D]([ExtResource("2_image"), ExtResource("3_image")])
-storybook_memory_images = Array[Texture2D]([ExtResource("story_1"), ExtResource("story_2"), ExtResource("story_3")])
-expected_image_paths = PackedStringArray("res://assets/memories/memory_03/memory_03_01.png", "res://assets/memories/memory_03/memory_03_02.png")
+storybook_memory_images = Array[Texture2D]([ExtResource("story_1"), ExtResource("story_2")])
+short_subtitles = Array[String](["待てー！ははは！", "僕たちずっと友達だよ"])

@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3]
-[ext_resource type="Script" path="res://src/scripts/memory_cutscene.gd" id="1"]
-[node name="MemoryCutscene" type="CanvasLayer" groups=["memory_cutscene"]]
+[gd_scene format=3 uid="uid://c02dqpbc5c1mm"]
+
+[ext_resource type="Script" uid="uid://b0hdi8hr70ib0" path="res://src/scripts/memory_cutscene.gd" id="1"]
+
+[node name="MemoryCutscene" type="CanvasLayer" unique_id=72816150 groups=["memory_cutscene"]]
 script = ExtResource("1")

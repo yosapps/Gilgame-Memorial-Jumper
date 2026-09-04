@@ -15,19 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://ccwphc16xdp1d" path="res://src/scenes/timeUI.tscn" id="12_6dux4"]
 [ext_resource type="PackedScene" uid="uid://dme773jdltbrw" path="res://src/scenes/npc.tscn" id="13_ha8qc"]
 [ext_resource type="PackedScene" uid="uid://oj12lsct7omy" path="res://src/scenes/moving_platform.tscn" id="14_moving_platform"]
-[ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="15_cutscene"]
+[ext_resource type="PackedScene" path="res://src/scenes/special_platform.tscn" id="14_special_platform"]
+[ext_resource type="PackedScene" uid="uid://c02dqpbc5c1mm" path="res://src/scenes/memory_cutscene.tscn" id="15_cutscene"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="16_menu"]
-[ext_resource type="PackedScene" uid="uid://opuuq77qgxks" path="res://src/scenes/memory_crystal.tscn" id="17_crystal"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_01.tres" id="18_m01"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_02.tres" id="19_m02"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_03.tres" id="20_m03"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_04.tres" id="21_m04"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_05.tres" id="22_m05"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_06.tres" id="23_m06"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_07.tres" id="24_m07"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_08.tres" id="25_m08"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_09.tres" id="26_m09"]
-[ext_resource type="Resource" path="res://src/resources/memories/memory_10.tres" id="27_m10"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4r27"]
 texture = ExtResource("4_pkkgn")
@@ -909,8 +899,50 @@ position = Vector2(504, 507)
 dialogue = Array[String](["おや、挑戦者かい？ この塔は、焦る者ほど下へ落ちる場所だ。", "A・Dキーか左右キーで移動。スペースを長押しして、離すとジャンプするぞ。", "空中では向きを変えられない。跳ぶ前に、着地点をよく見るんだ。", "失敗しても大丈夫。落ちた分だけ、次の一跳びがうまくなる。頂上で会おう！"])
 
 [node name="MovingPlatform" parent="." unique_id=1609242261 instance=ExtResource("14_moving_platform")]
-position = Vector2(286, 494)
+position = Vector2(44, 513)
 destination_offset = Vector2(91.125, -200)
+
+[node name="PlatformTestArea" type="Node2D" parent="." unique_id=455156795]
+
+[node name="BouncePlatform" parent="PlatformTestArea" unique_id=1348888487 instance=ExtResource("14_special_platform")]
+position = Vector2(600, 479)
+show_type_label = true
+bounce_velocity = 760.0
+
+[node name="CrumblePlatform" parent="PlatformTestArea" unique_id=1694899137 instance=ExtResource("14_special_platform")]
+position = Vector2(761, 443)
+platform_type = 1
+show_type_label = true
+trigger_delay = 0.55
+recovery_time = 2.5
+
+[node name="VanishPlatform" parent="PlatformTestArea" unique_id=1764785307 instance=ExtResource("14_special_platform")]
+position = Vector2(331, 473)
+platform_type = 2
+show_type_label = true
+trigger_delay = 0.45
+
+[node name="BlinkPlatform" parent="PlatformTestArea" unique_id=1784743745 instance=ExtResource("14_special_platform")]
+position = Vector2(467, 312)
+platform_type = 3
+show_type_label = true
+visible_time = 1.8
+
+[node name="ConveyorPlatform" parent="PlatformTestArea" unique_id=1188942861 instance=ExtResource("14_special_platform")]
+position = Vector2(921, 463)
+constant_linear_velocity = Vector2(-170, 0)
+platform_type = 4
+platform_size = Vector2(128, 16)
+show_type_label = true
+conveyor_speed = -170.0
+
+[node name="RotatingPlatform" parent="PlatformTestArea" unique_id=1798728597 instance=ExtResource("14_special_platform")]
+position = Vector2(330, 395)
+platform_type = 5
+platform_size = Vector2(112, 14)
+one_way_collision = false
+show_type_label = true
+rotation_degrees_per_second = 28.0
 
 [node name="MemoryCutscene" parent="." unique_id=1783567837 instance=ExtResource("15_cutscene")]
 

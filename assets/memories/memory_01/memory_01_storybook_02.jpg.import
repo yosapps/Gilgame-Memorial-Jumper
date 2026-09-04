@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di4bn4bwsj80s"
-path="res://.godot/imported/memory_03_storybook_01.png-c3221dc761f34afe35088e535d5e93a0.ctex"
+uid="uid://c2awplbb1xee1"
+path="res://.godot/imported/memory_01_storybook_02.jpg-aca6d4aee65a5b3caeacfc25a3e6802f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/memories/memory_03/memory_03_storybook_01.png"
-dest_files=["res://.godot/imported/memory_03_storybook_01.png-c3221dc761f34afe35088e535d5e93a0.ctex"]
+source_file="res://assets/memories/memory_01/memory_01_storybook_02.jpg"
+dest_files=["res://.godot/imported/memory_01_storybook_02.jpg-aca6d4aee65a5b3caeacfc25a3e6802f.ctex"]
 
 [params]
 

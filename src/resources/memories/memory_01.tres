@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://dbr1g8r2nvjmd" path="res://src/resources/memory_crystal_data.gd" id="1_data"]
 [ext_resource type="Texture2D" uid="uid://w8ure0t2lw0o" path="res://assets/memories/memory_01/memory_01_01.png" id="2_image"]
 [ext_resource type="Texture2D" uid="uid://b1ev6v7e1q4j8" path="res://assets/memories/memory_01/memory_01_02.png" id="3_image"]
-[ext_resource type="Texture2D" uid="uid://cv7e4jacnqq0g" path="res://assets/memories/memory_01/memory_01_storybook_01.png" id="story_1"]
-[ext_resource type="Texture2D" uid="uid://ch8y1igwhygy1" path="res://assets/memories/memory_01/memory_01_storybook_02.png" id="story_2"]
-[ext_resource type="Texture2D" uid="uid://ccub7r21124eu" path="res://assets/memories/memory_01/memory_01_storybook_03.png" id="story_3"]
+[ext_resource type="Texture2D" uid="uid://cff546enfg1k5" path="res://assets/memories/memory_01/memory_01_storybook_01.jpg" id="4_sqvhr"]
+[ext_resource type="Texture2D" uid="uid://c2awplbb1xee1" path="res://assets/memories/memory_01/memory_01_storybook_02.jpg" id="5_adtcq"]
 
 [resource]
 script = ExtResource("1_data")
@@ -14,5 +13,5 @@ display_name = "はじまりの記憶"
 developer_description = "ガロードが村外れで傷ついたギルガメを見つける。"
 associated_dungeon_area = &"abyss"
 memory_images = Array[Texture2D]([ExtResource("2_image"), ExtResource("3_image")])
-storybook_memory_images = Array[Texture2D]([ExtResource("story_1"), ExtResource("story_2"), ExtResource("story_3")])
-short_subtitles = Array[String](["……誰だ？", "テスト", "なるほど"])
+storybook_memory_images = Array[Texture2D]([ExtResource("4_sqvhr"), ExtResource("5_adtcq")])
+short_subtitles = Array[String](["君... 怪我しているの？", "大丈夫？"])
