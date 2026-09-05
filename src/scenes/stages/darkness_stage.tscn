@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://chqbrcriad688"]
+
+[ext_resource type="Script" uid="uid://vvhlk0il88o6" path="res://src/scripts/darkness_stage.gd" id="1_stage"]
+[ext_resource type="PackedScene" uid="uid://04aknybexnsk" path="res://src/scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://ccwphc16xdp1d" path="res://src/scenes/timeUI.tscn" id="3_time"]
+[ext_resource type="PackedScene" uid="uid://b7lqsdwp1ugpl" path="res://src/scenes/joystick.tscn" id="4_joystick"]
+[ext_resource type="Texture2D" uid="uid://dc5r86m05e2bi" path="res://assets/sprites/joybtn.png" id="5_jump"]
+[ext_resource type="Texture2D" uid="uid://bfrqepasg8k27" path="res://assets/sprites/UI/pause_btn.png" id="6_menu"]
+[ext_resource type="Script" uid="uid://cfc540larjt12" path="res://src/scripts/goal.gd" id="7_goal"]
+[ext_resource type="AudioStream" uid="uid://bidmri3om3uq1" path="res://assets/sounds/platformer_level03.mp3" id="8_bgm"]
+
+[sub_resource type="RectangleShape2D" id="Shape_floor"]
+size = Vector2(1152, 48)
+
+[sub_resource type="RectangleShape2D" id="Shape_p1"]
+size = Vector2(190, 22)
+
+[sub_resource type="RectangleShape2D" id="Shape_p2"]
+size = Vector2(150, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_p3"]
+size = Vector2(180, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_p4"]
+size = Vector2(130, 18)
+
+[sub_resource type="RectangleShape2D" id="Shape_p5"]
+size = Vector2(170, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_p6"]
+size = Vector2(140, 18)
+
+[sub_resource type="RectangleShape2D" id="Shape_p7"]
+size = Vector2(190, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_p8"]
+size = Vector2(120, 18)
+
+[sub_resource type="RectangleShape2D" id="Shape_p9"]
+size = Vector2(180, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_p10"]
+size = Vector2(155, 18)
+
+[sub_resource type="Gradient" id="Gradient_player_light"]
+offsets = PackedFloat32Array(0, 0.38, 0.72, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.92, 0.72, 0.82, 0.45, 0.62, 1, 0.3, 0.05, 0.12, 0.3, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture_player_light"]
+gradient = SubResource("Gradient_player_light")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="RectangleShape2D" id="Shape_goal"]
+size = Vector2(52, 64)
+
+[sub_resource type="Gradient" id="Gradient_goal_light"]
+colors = PackedColorArray(0.5, 0.82, 1, 0.8, 0.15, 0.35, 0.9, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture_goal_light"]
+gradient = SubResource("Gradient_goal_light")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="DarknessStage" type="Node2D" unique_id=335411551]
+script = ExtResource("1_stage")
+
+[node name="CaveBackground" type="Polygon2D" parent="." unique_id=1981185915]
+z_index = -20
+color = Color(0.11, 0.14, 0.2, 1)
+polygon = PackedVector2Array(0, -1600, 1152, -1600, 1152, 700, 0, 700)
+
+[node name="FarRockLeft" type="Polygon2D" parent="." unique_id=1857430459]
+z_index = -15
+color = Color(0.16, 0.18, 0.25, 1)
+polygon = PackedVector2Array(0, -1600, 210, -1510, 120, -1320, 245, -1120, 115, -900, 225, -690, 95, -430, 180, -160, 90, 80, 210, 320, 0, 700)
+
+[node name="FarRockRight" type="Polygon2D" parent="." unique_id=1551129106]
+z_index = -15
+color = Color(0.14, 0.17, 0.24, 1)
+polygon = PackedVector2Array(1152, -1600, 950, -1490, 1040, -1270, 910, -1040, 1035, -820, 920, -580, 1060, -340, 955, -80, 1065, 180, 940, 430, 1152, 700)
+
+[node name="CrystalSpecks" type="CPUParticles2D" parent="." unique_id=169419624]
+z_index = -10
+position = Vector2(576, -450)
+amount = 65
+lifetime = 8.0
+preprocess = 8.0
+emission_shape = 3
+emission_rect_extents = Vector2(520, 1050)
+direction = Vector2(0, -1)
+spread = 25.0
+gravity = Vector2(0, -1)
+initial_velocity_min = 2.0
+initial_velocity_max = 7.0
+scale_amount_min = 0.4
+scale_amount_max = 1.4
+color = Color(0.35, 0.68, 1, 0.35)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1064247239]
+position = Vector2(576, 624)
+
+[node name="Visual" type="Polygon2D" parent="Floor" unique_id=1207361765]
+color = Color(0.25, 0.29, 0.37, 1)
+polygon = PackedVector2Array(-576, -24, 576, -24, 576, 24, -576, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1325548171]
+shape = SubResource("Shape_floor")
+
+[node name="Platforms" type="Node2D" parent="." unique_id=205276511]
+
+[node name="P1" type="StaticBody2D" parent="Platforms" unique_id=1003380668]
+position = Vector2(270, 490)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P1" unique_id=1476927105]
+color = Color(0.3, 0.36, 0.46, 1)
+polygon = PackedVector2Array(-95, -11, 95, -11, 83, 11, -85, 11)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P1" unique_id=157481846]
+shape = SubResource("Shape_p1")
+one_way_collision = true
+
+[node name="P2" type="StaticBody2D" parent="Platforms" unique_id=540045624]
+position = Vector2(555, 350)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P2" unique_id=770463361]
+color = Color(0.27, 0.34, 0.44, 1)
+polygon = PackedVector2Array(-75, -10, 75, -10, 64, 10, -67, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P2" unique_id=360636639]
+shape = SubResource("Shape_p2")
+one_way_collision = true
+
+[node name="P3" type="StaticBody2D" parent="Platforms" unique_id=421792447]
+position = Vector2(840, 200)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P3" unique_id=1759312685]
+color = Color(0.29, 0.35, 0.46, 1)
+polygon = PackedVector2Array(-90, -10, 90, -10, 78, 10, -80, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P3" unique_id=799937010]
+shape = SubResource("Shape_p3")
+one_way_collision = true
+
+[node name="P4" type="StaticBody2D" parent="Platforms" unique_id=1878639661]
+position = Vector2(590, 35)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P4" unique_id=1625382865]
+color = Color(0.33, 0.37, 0.49, 1)
+polygon = PackedVector2Array(-65, -9, 65, -9, 55, 9, -57, 9)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P4" unique_id=260990600]
+shape = SubResource("Shape_p4")
+one_way_collision = true
+
+[node name="P5" type="StaticBody2D" parent="Platforms" unique_id=251443004]
+position = Vector2(300, -125)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P5" unique_id=1188781985]
+color = Color(0.28, 0.34, 0.45, 1)
+polygon = PackedVector2Array(-85, -10, 85, -10, 74, 10, -76, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P5" unique_id=937834345]
+shape = SubResource("Shape_p5")
+one_way_collision = true
+
+[node name="P6" type="StaticBody2D" parent="Platforms" unique_id=1921999184]
+position = Vector2(535, -300)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P6" unique_id=617082044]
+color = Color(0.31, 0.36, 0.48, 1)
+polygon = PackedVector2Array(-70, -9, 70, -9, 59, 9, -61, 9)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P6" unique_id=423988120]
+shape = SubResource("Shape_p6")
+one_way_collision = true
+
+[node name="P7" type="StaticBody2D" parent="Platforms" unique_id=2025579519]
+position = Vector2(820, -470)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P7" unique_id=114426686]
+color = Color(0.27, 0.34, 0.46, 1)
+polygon = PackedVector2Array(-95, -10, 95, -10, 82, 10, -84, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P7" unique_id=1417528013]
+shape = SubResource("Shape_p7")
+one_way_collision = true
+
+[node name="P8" type="StaticBody2D" parent="Platforms" unique_id=914220712]
+position = Vector2(535, -650)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P8" unique_id=1899524374]
+color = Color(0.32, 0.38, 0.5, 1)
+polygon = PackedVector2Array(-60, -9, 60, -9, 51, 9, -53, 9)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P8" unique_id=451298539]
+shape = SubResource("Shape_p8")
+one_way_collision = true
+
+[node name="P9" type="StaticBody2D" parent="Platforms" unique_id=1569226508]
+position = Vector2(275, -825)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P9" unique_id=276305962]
+color = Color(0.29, 0.35, 0.47, 1)
+polygon = PackedVector2Array(-90, -10, 90, -10, 78, 10, -80, 10)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P9" unique_id=1370987274]
+shape = SubResource("Shape_p9")
+one_way_collision = true
+
+[node name="P10" type="StaticBody2D" parent="Platforms" unique_id=2012122371]
+position = Vector2(585, -1010)
+
+[node name="Visual" type="Polygon2D" parent="Platforms/P10" unique_id=1485687592]
+color = Color(0.34, 0.39, 0.51, 1)
+polygon = PackedVector2Array(-77.5, -9, 77.5, -9, 66, 9, -68, 9)
+
+[node name="Collision" type="CollisionShape2D" parent="Platforms/P10" unique_id=535800090]
+shape = SubResource("Shape_p10")
+one_way_collision = true
+
+[node name="Darkness" type="CanvasModulate" parent="." unique_id=1624774575]
+color = Color(0.025, 0.035, 0.065, 1)
+
+[node name="Player" parent="." unique_id=1605536206 node_paths=PackedStringArray("joystick", "jump_touch") instance=ExtResource("2_player")]
+position = Vector2(575, 575)
+joystick = NodePath("../HUD/Joystick")
+jump_touch = NodePath("../HUD/Jump")
+
+[node name="PlayerLight" type="PointLight2D" parent="Player" unique_id=1160466866]
+z_index = 5
+color = Color(1, 0.82, 0.58, 1)
+energy = 1.35
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture_player_light")
+texture_scale = 1.15
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1455023668]
+position = Vector2(0, -64)
+zoom = Vector2(2, 2)
+process_callback = 0
+limit_left = 0
+limit_right = 1150
+limit_bottom = 700
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Goal" type="Area2D" parent="." unique_id=1091889208]
+position = Vector2(585, -1080)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("7_goal")
+destination_scene = "res://src/scenes/title.tscn"
+is_final_goal = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" unique_id=615622956]
+shape = SubResource("Shape_goal")
+
+[node name="GoalLight" type="PointLight2D" parent="Goal" unique_id=1210932438]
+color = Color(0.45, 0.75, 1, 1)
+energy = 1.4
+texture = SubResource("GradientTexture_goal_light")
+texture_scale = 1.1
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=570749666]
+stream = ExtResource("8_bgm")
+volume_db = -12.0
+autoplay = true
+bus = &"BGM"
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1190401026]
+
+[node name="MenuBtn" type="TextureButton" parent="HUD" unique_id=538765549]
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 64.0
+offset_bottom = 63.0
+texture_normal = ExtResource("6_menu")
+
+[node name="Joystick" parent="HUD" unique_id=535800818 instance=ExtResource("4_joystick")]
+offset_left = 105.0
+offset_top = 535.0
+offset_right = 105.0
+offset_bottom = 535.0
+
+[node name="Jump" type="TouchScreenButton" parent="HUD" unique_id=669271710]
+modulate = Color(1, 1, 1, 0.42)
+position = Vector2(1016, 504)
+scale = Vector2(1.625, 1.625)
+texture_normal = ExtResource("5_jump")
+
+[node name="EntryFade" type="ColorRect" parent="HUD" unique_id=993701197]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TimeUI" parent="." unique_id=1093353768 instance=ExtResource("3_time")]
+
+[connection signal="body_entered" from="Goal" to="Goal" method="_on_body_entered"]
+[connection signal="pressed" from="HUD/MenuBtn" to="." method="pause_event"]
+[connection signal="pressed" from="HUD/Jump" to="Player" method="start_jump"]
+[connection signal="released" from="HUD/Jump" to="Player" method="end_jump"]

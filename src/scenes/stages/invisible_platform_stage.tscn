@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://src/scenes/stages/darkness_stage.tscn" id="1_base"]
+[ext_resource type="Script" path="res://src/scripts/invisible_platform_stage.gd" id="2_stage"]
+[ext_resource type="Script" path="res://src/scripts/invisible_platform.gd" id="3_platform"]
+[ext_resource type="Script" path="res://src/scripts/reveal_flash_effect.gd" id="4_flash"]
+
+[node name="InvisiblePlatformStage" instance=ExtResource("1_base")]
+script = ExtResource("2_stage")
+
+[node name="CaveBackground" parent="." index="0"]
+color = Color(0.55, 0.66, 0.76, 1)
+
+[node name="FarRockLeft" parent="." index="1"]
+color = Color(0.34, 0.43, 0.52, 1)
+
+[node name="FarRockRight" parent="." index="2"]
+color = Color(0.31, 0.4, 0.49, 1)
+
+[node name="CrystalSpecks" parent="." index="3"]
+color = Color(0.65, 0.9, 1, 0.48)
+
+[node name="P1" parent="Platforms" index="0"]
+script = ExtResource("3_platform")
+
+[node name="P2" parent="Platforms" index="1"]
+script = ExtResource("3_platform")
+blink_speed = 4.5
+
+[node name="P3" parent="Platforms" index="2"]
+script = ExtResource("3_platform")
+reveal_max_alpha = 0.72
+
+[node name="P4" parent="Platforms" index="3"]
+script = ExtResource("3_platform")
+blink_speed = 6.5
+
+[node name="P5" parent="Platforms" index="4"]
+script = ExtResource("3_platform")
+
+[node name="P6" parent="Platforms" index="5"]
+script = ExtResource("3_platform")
+reveal_min_alpha = 0.12
+
+[node name="P7" parent="Platforms" index="6"]
+script = ExtResource("3_platform")
+blink_speed = 4.0
+
+[node name="P8" parent="Platforms" index="7"]
+script = ExtResource("3_platform")
+reveal_max_alpha = 0.7
+
+[node name="P9" parent="Platforms" index="8"]
+script = ExtResource("3_platform")
+
+[node name="P10" parent="Platforms" index="9"]
+script = ExtResource("3_platform")
+blink_speed = 6.0
+
+[node name="Darkness" parent="." index="6"]
+color = Color(1, 1, 1, 1)
+
+[node name="PlayerLight" parent="Player" index="4"]
+visible = false
+
+[node name="RevealFlash" type="Node2D" parent="Player" index="5"]
+z_index = 20
+script = ExtResource("4_flash")
+
+[node name="RevealHint" type="Label" parent="HUD" index="3"]
+offset_left = 426.0
+offset_top = 18.0
+offset_right = 726.0
+offset_bottom = 52.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.88, 0.96, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.14, 0.2, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+text = "F － 足場の記憶を照らす"
+horizontal_alignment = 1
+
+[editable path="Platforms/P1"]
+[editable path="Platforms/P2"]
+[editable path="Platforms/P3"]
+[editable path="Platforms/P4"]
+[editable path="Platforms/P5"]
+[editable path="Platforms/P6"]
+[editable path="Platforms/P7"]
+[editable path="Platforms/P8"]
+[editable path="Platforms/P9"]
+[editable path="Platforms/P10"]

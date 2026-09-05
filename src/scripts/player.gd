@@ -59,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	temp_velocity = velocity
 	var was_on_floor := is_on_floor()
 	move_and_slide()
+	_cancel_jump_charge_if_floor_lost(was_on_floor)
 	_handle_landing(was_on_floor)
 	_handle_air_collision()
 	_update_animation(delta)
@@ -95,6 +96,14 @@ func _release_jump() -> void:
 	jump_timer_node.start()
 	jump_bar.hide()
 	jump_force = 0.0
+
+func _cancel_jump_charge_if_floor_lost(was_on_floor: bool) -> void:
+	if not was_on_floor or is_on_floor() or not jump_mode:
+		return
+	jump_mode = false
+	jump_force = 0.0
+	jump_bar.value = 0.0
+	jump_bar.hide()
 
 func _apply_gravity(delta: float) -> void:
 	if is_on_floor(): return
