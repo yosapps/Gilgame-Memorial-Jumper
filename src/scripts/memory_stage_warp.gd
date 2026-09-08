@@ -3,6 +3,7 @@ extends Area2D
 
 @export_file("*.tscn") var destination_scene := ""
 @export var is_final_warp := false
+@export_range(0, 10, 1) var unlock_stage_index := 0
 @export_range(0.2, 3.0, 0.05) var appearance_duration := 1.0
 @export_range(0.2, 3.0, 0.05) var teleport_duration := 0.85
 
@@ -50,6 +51,8 @@ func _on_body_entered(body: Node2D) -> void:
 	body.velocity = Vector2.ZERO
 	body.jump_mode = false
 	body.jump_force = 0.0
+	if unlock_stage_index > 0:
+		SaveManager.unlock_stage(unlock_stage_index)
 	var flash := _create_flash()
 	var tween := create_tween().set_parallel(true)
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)

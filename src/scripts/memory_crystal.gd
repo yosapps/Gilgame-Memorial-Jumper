@@ -22,11 +22,8 @@ func _ready() -> void:
 	if ambient_player.stream != null: ambient_player.play()
 	collection_player.stream = data.collection_sound
 	if MemoryManager.is_collected(data.crystal_id):
-		warp.show()
-		warp.process_mode = Node.PROCESS_MODE_INHERIT
+		_activate_warp()
 		queue_free()
-	else:
-		warp.hide()
 
 func _process(_delta: float) -> void:
 	$Visual.position.y = sin(Time.get_ticks_msec() * 0.001 * bob_speed) * bob_height
@@ -56,9 +53,17 @@ func _on_body_entered(body: Node2D) -> void:
 		_lock_player(body, false)
 	else: await cutscene.play_memory(data)
 	MemoryManager.collect_memory(data.crystal_id)
-	warp.show()
-	warp.process_mode = Node.PROCESS_MODE_INHERIT
+	_activate_warp()
 	queue_free()
+
+func _activate_warp() -> void:
+	if warp == null:
+		push_warning("Memory Crystal has no warp assigned: %s" % name)
+		return
+	if not warp.has_method("activate"):
+		push_warning("Assigned warp does not provide activate(): %s" % warp.name)
+		return
+	warp.activate()
 
 func _lock_player(target: Node, lock: bool) -> void:
 	if target == null: return

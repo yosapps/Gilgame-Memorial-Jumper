@@ -4,7 +4,7 @@ const MAIN_SCENE_PATH := "res://src/scenes/title.tscn"
 const BASE_PRELOAD_PATHS := [
 	MAIN_SCENE_PATH,
 	"res://src/scenes/opening_fall_cutscene.tscn",
-	"res://src/scenes/memory_gallery.tscn",
+	"res://src/scenes/book_memory_gallery.tscn",
 ]
 
 @export_range(0.5, 10.0, 0.1) var minimum_display_seconds := 2.8

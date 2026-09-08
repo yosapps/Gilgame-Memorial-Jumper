@@ -23,6 +23,7 @@ var scene_fade_tween: Tween
 var scene_fade_layer: CanvasLayer
 var scene_fade_overlay: ColorRect
 var previous_focus: Control
+var changing_scene := false
 
 func _enter_tree() -> void:
 	if Global.consume_title_fade_skip():
@@ -92,8 +93,26 @@ func _start_game(mode: Global.GameMode) -> void:
 		get_tree().change_scene_to_file("res://src/scenes/opening_fall_cutscene.tscn")
 
 func open_memory_gallery() -> void:
+	if changing_scene:
+		return
 	_play_click()
-	get_tree().change_scene_to_file("res://src/scenes/memory_gallery.tscn")
+	changing_scene = true
+	await _fade_out_to_scene("res://src/scenes/book_memory_gallery.tscn")
+
+func _fade_out_to_scene(scene_path: String) -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 110
+	add_child(layer)
+	var overlay := ColorRect.new()
+	overlay.color = Color.BLACK
+	overlay.modulate.a = 0.0
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	layer.add_child(overlay)
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var tween := overlay.create_tween()
+	tween.tween_property(overlay, "modulate:a", 1.0, 0.55).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+	get_tree().change_scene_to_file(scene_path)
 
 func open_clear_time_popup() -> void:
 	_update_clear_time_popup()

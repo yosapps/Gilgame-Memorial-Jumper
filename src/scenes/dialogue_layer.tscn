@@ -27,6 +27,16 @@ corner_radius_bottom_left = 5
 [node name="DialogueLayer" type="CanvasLayer" unique_id=984624428]
 layer = 20
 
+[node name="DialoguePortrait" type="TextureRect" parent="."]
+visible = false
+offset_left = 366.0
+offset_top = 86.0
+offset_right = 786.0
+offset_bottom = 506.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
 [node name="DialogueBox" type="PanelContainer" parent="." unique_id=934989051]
 visible = false
 anchors_preset = 12

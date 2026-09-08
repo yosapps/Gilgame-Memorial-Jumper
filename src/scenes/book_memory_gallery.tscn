@@ -1,0 +1,394 @@
+[gd_scene format=3 uid="uid://cdup2g02solsn"]
+
+[ext_resource type="Script" uid="uid://d1a08efdkaxfw" path="res://src/scripts/book_memory_gallery.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://22srejs8gscy" path="res://assets/title/title_watercolor_background.jpg" id="2_background"]
+[ext_resource type="FontFile" uid="uid://b0l7l6jk5ga53" path="res://assets/fonts/rounded-mplus-1p-bold.ttf" id="3_font"]
+[ext_resource type="PackedScene" uid="uid://c02dqpbc5c1mm" path="res://src/scenes/memory_cutscene.tscn" id="4_cutscene"]
+[ext_resource type="Script" uid="uid://c0dceqd3lx7mi" path="res://src/scripts/ui/title_menu_button.gd" id="5_button"]
+
+[sub_resource type="StyleBoxFlat" id="BookShadow"]
+bg_color = Color(0.08, 0.045, 0.025, 0.72)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.62)
+shadow_size = 22
+
+[sub_resource type="StyleBoxFlat" id="PageStyle"]
+bg_color = Color(0.965, 0.91, 0.77, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.46, 0.29, 0.13, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+shadow_color = Color(0.13, 0.07, 0.025, 0.35)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="SpineStyle"]
+bg_color = Color(0.28, 0.12, 0.055, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.05, 0.025, 0.01, 0.8)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="NavNormal"]
+bg_color = Color(0.78, 0.59, 0.3, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.18, 0.07, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.12, 0.06, 0.02, 0.42)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="NavFocus"]
+bg_color = Color(1, 0.83, 0.47, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7, 0.4, 0.1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.38, 0.2, 0.05, 0.52)
+shadow_size = 7
+
+[sub_resource type="StyleBoxFlat" id="CoverStyle"]
+bg_color = Color(0.22, 0.075, 0.045, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.67, 0.42, 0.16, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.72)
+shadow_size = 18
+
+[node name="BookMemoryGallery" type="Node2D" unique_id=1599811684]
+script = ExtResource("1_script")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1486113946]
+
+[node name="Background" type="TextureRect" parent="UI" unique_id=1390481997]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Dim" type="ColorRect" parent="UI" unique_id=98115676]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.035, 0.03, 0.025, 0.58)
+
+[node name="Header" type="Label" parent="UI" unique_id=838289616]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 53.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.66, 1)
+theme_override_colors/font_shadow_color = Color(0.08, 0.035, 0.015, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 28
+text = "ギルガメの記憶の書"
+horizontal_alignment = 1
+
+[node name="Book" type="Control" parent="UI" unique_id=1600563555]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -270.0
+offset_right = 500.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spread" type="Control" parent="UI/Book" unique_id=1950836654]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(500, 275)
+
+[node name="BookShadow" type="Panel" parent="UI/Book/Spread" unique_id=1483624229]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 20.0
+offset_right = 982.0
+offset_bottom = 520.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("BookShadow")
+
+[node name="LeftPage" type="Panel" parent="UI/Book/Spread" unique_id=65988630]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 500.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("PageStyle")
+
+[node name="PageTitle" type="Label" parent="UI/Book/Spread/LeftPage" unique_id=363713716]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 18.0
+offset_right = 437.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.35, 0.19, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "MEMORIES"
+horizontal_alignment = 1
+
+[node name="Rule" type="HSeparator" parent="UI/Book/Spread/LeftPage" unique_id=63440031]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 57.0
+offset_right = 430.0
+offset_bottom = 61.0
+
+[node name="LeftGrid" type="GridContainer" parent="UI/Book/Spread/LeftPage" unique_id=837092502]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 76.0
+offset_right = 411.0
+offset_bottom = 426.0
+theme_override_constants/v_separation = 18
+
+[node name="PageNumber" type="Label" parent="UI/Book/Spread/LeftPage" unique_id=95091515]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 456.0
+offset_right = 432.0
+offset_bottom = 485.0
+theme_override_colors/font_color = Color(0.47, 0.31, 0.18, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 13
+text = "1"
+horizontal_alignment = 1
+
+[node name="RightPage" type="Panel" parent="UI/Book/Spread" unique_id=820729043]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 18.0
+offset_right = 972.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("PageStyle")
+
+[node name="PageTitle" type="Label" parent="UI/Book/Spread/RightPage" unique_id=1297907910]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 18.0
+offset_right = 437.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.35, 0.19, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+text = "MEMORIES & ENDINGS"
+horizontal_alignment = 1
+
+[node name="Rule" type="HSeparator" parent="UI/Book/Spread/RightPage" unique_id=935254708]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 57.0
+offset_right = 430.0
+offset_bottom = 61.0
+
+[node name="RightGrid" type="GridContainer" parent="UI/Book/Spread/RightPage" unique_id=103457808]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 76.0
+offset_right = 411.0
+offset_bottom = 426.0
+theme_override_constants/v_separation = 18
+
+[node name="PageNumber" type="Label" parent="UI/Book/Spread/RightPage" unique_id=1452509694]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 456.0
+offset_right = 432.0
+offset_bottom = 485.0
+theme_override_colors/font_color = Color(0.47, 0.31, 0.18, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 13
+text = "2"
+horizontal_alignment = 1
+
+[node name="Spine" type="Panel" parent="UI/Book/Spread" unique_id=1071139283]
+layout_mode = 0
+offset_left = 493.0
+offset_top = 22.0
+offset_right = 507.0
+offset_bottom = 516.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SpineStyle")
+
+[node name="PreviousButton" type="Button" parent="UI/Book/Spread" unique_id=603763312]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 454.0
+offset_right = 162.0
+offset_bottom = 496.0
+theme_override_colors/font_color = Color(0.2, 0.1, 0.035, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("NavNormal")
+theme_override_styles/pressed = SubResource("NavFocus")
+theme_override_styles/hover = SubResource("NavNormal")
+theme_override_styles/focus = SubResource("NavFocus")
+text = "◀ 前へ"
+script = ExtResource("5_button")
+
+[node name="NextButton" type="Button" parent="UI/Book/Spread" unique_id=1961260984]
+layout_mode = 0
+offset_left = 838.0
+offset_top = 454.0
+offset_right = 954.0
+offset_bottom = 496.0
+theme_override_colors/font_color = Color(0.2, 0.1, 0.035, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("NavNormal")
+theme_override_styles/pressed = SubResource("NavFocus")
+theme_override_styles/hover = SubResource("NavNormal")
+theme_override_styles/focus = SubResource("NavFocus")
+text = "次へ ▶"
+script = ExtResource("5_button")
+
+[node name="Cover" type="PanelContainer" parent="UI/Book" unique_id=1051080809]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 15.0
+offset_right = 715.0
+offset_bottom = 535.0
+pivot_offset = Vector2(215, 260)
+theme_override_styles/panel = SubResource("CoverStyle")
+
+[node name="CoverContent" type="VBoxContainer" parent="UI/Book/Cover" unique_id=2084751391]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Crystal" type="Label" parent="UI/Book/Cover/CoverContent" unique_id=194465078]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.84, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 58
+text = "◆"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="UI/Book/Cover/CoverContent" unique_id=339134710]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86, 0.55, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 30
+text = "記 憶 の 書"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/Book/Cover/CoverContent" unique_id=1050492982]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.68, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 14
+text = "GILGAME'S MEMORIES"
+horizontal_alignment = 1
+
+[node name="PageTurn" type="Panel" parent="UI/Book" unique_id=574872636]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 23.0
+offset_right = 965.0
+offset_bottom = 517.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("PageStyle")
+
+[node name="TurnDecoration" type="Label" parent="UI/Book/PageTurn" unique_id=1572196753]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.64, 0.45, 0.24, 0.5)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 30
+text = "❧"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="UI" unique_id=956039411]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -58.0
+offset_right = 78.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.2, 0.1, 0.035, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("NavNormal")
+theme_override_styles/pressed = SubResource("NavFocus")
+theme_override_styles/hover = SubResource("NavNormal")
+theme_override_styles/focus = SubResource("NavFocus")
+text = "タイトルへ戻る"
+script = ExtResource("5_button")
+
+[node name="FadeOverlay" type="ColorRect" parent="UI" unique_id=927343344]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MemoryCutscene" parent="." unique_id=370825250 instance=ExtResource("4_cutscene")]
+
+[connection signal="pressed" from="UI/Book/Spread/PreviousButton" to="." method="previous_spread"]
+[connection signal="pressed" from="UI/Book/Spread/NextButton" to="." method="next_spread"]
+[connection signal="pressed" from="UI/BackButton" to="." method="go_back"]

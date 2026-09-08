@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://ccwphc16xdp1d" path="res://src/scenes/timeUI.tscn" id="10_hbv1x"]
 [ext_resource type="PackedScene" uid="uid://dyvja41hb3l2l" path="res://src/scenes/dialogue_layer.tscn" id="11_yad1a"]
 [ext_resource type="PackedScene" uid="uid://04aknybexnsk" path="res://src/scenes/player.tscn" id="12_pc83o"]
-[ext_resource type="Script" uid="uid://cfc540larjt12" path="res://src/scripts/goal.gd" id="13_s7v73"]
+[ext_resource type="Script" uid="uid://dsa0uvmqwt72c" path="res://src/scripts/memory_stage_warp.gd" id="13_s7v73"]
 [ext_resource type="PackedScene" uid="uid://dme773jdltbrw" path="res://src/scenes/npc.tscn" id="14_fn7k7"]
-[ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="16_vga8r"]
+[ext_resource type="PackedScene" uid="uid://c02dqpbc5c1mm" path="res://src/scenes/memory_cutscene.tscn" id="16_vga8r"]
 [ext_resource type="PackedScene" uid="uid://opuuq77qgxks" path="res://src/scenes/memory_crystal.tscn" id="17_i0idb"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="17_y2bji"]
 [ext_resource type="Resource" uid="uid://bis20twebrlej" path="res://src/resources/memories/memory_01.tres" id="18_i0idb"]
@@ -608,7 +608,6 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("13_s7v73")
 destination_scene = "uid://b1nhkdlc6v6j5"
-is_final_goal = false
 unlock_stage_index = 2
 
 [node name="Goal" type="Sprite2D" parent="Goal" unique_id=1760898012]
@@ -623,7 +622,13 @@ metadata/_edit_lock_ = true
 
 [node name="Npc" parent="." unique_id=264556763 instance=ExtResource("14_fn7k7")]
 position = Vector2(330, 508)
-dialogue = Array[String](["おや、挑戦者かい？ この塔は、焦る者ほど下へ落ちる場所だ。", "A・Dキーか左右キーで移動。スペースを長押しして、離すとジャンプするぞ。", "空中では向きを変えられない。跳ぶ前に、着地点をよく見るんだ。", "失敗しても大丈夫。落ちた分だけ、次の一跳びがうまくなる。頂上で会おう！"])
+dialogue = Array[String](["……おや？ また誰か落ちてきたのか。
+大丈夫か？ ずいぶん深いところまで落ちてきたみたいだな。", "……自分が誰なのか、わからない？
+そうか……お前もか。", "ここに落ちてきた者はな、不思議と大切なことを忘れてしまう。
+名前も、どこから来たのかも……誰かと過ごした記憶さえも。", "だが、完全に消えてしまったわけじゃないらしい。
+この場所には、ときどき妙に輝くクリスタルが落ちている。", "あれに触れた者が、失った記憶を思い出した……そんな話を聞いたことがある。", "俺も昔は登ろうとした。
+だが……もう疲れちまったよ。", "お前も行くんだろう？……気をつけろよ。
+上へ行きたいなら……跳ぶしかない。"])
 
 [node name="MemoryCutscene" parent="." unique_id=1783567837 instance=ExtResource("16_vga8r")]
 

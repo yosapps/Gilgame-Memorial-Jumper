@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="NpcDialogueProfile" format=3 uid="uid://cfi6kerxepus4"]
+
+[ext_resource type="Script" uid="uid://dy87sxpusjvns" path="res://src/resources/npc_dialogue_profile.gd" id="1_profile"]
+[ext_resource type="Texture2D" uid="uid://b0tvg6laija0a" path="res://assets/sprites/npcs/npc1/thumbnail.png" id="2_thumbnail"]
+
+[resource]
+script = ExtResource("1_profile")
+profile_id = &"npc_1"
+display_name = "案内人"
+thumbnail = ExtResource("2_thumbnail")
+developer_description = "チュートリアル開始地点にいる機械仕掛けの案内人。"

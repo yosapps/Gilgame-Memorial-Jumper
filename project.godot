@@ -38,7 +38,7 @@ mouse_cursor/custom_image="res://assets/sprites/UI/tile_0578.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/test_stage_generator/plugin.cfg")
 
 [importer_defaults]
 

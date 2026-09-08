@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ccwphc16xdp1d" path="res://src/scenes/timeUI.tscn" id="10_ohwp4"]
 [ext_resource type="PackedScene" uid="uid://dyvja41hb3l2l" path="res://src/scenes/dialogue_layer.tscn" id="11_vna25"]
 [ext_resource type="PackedScene" uid="uid://04aknybexnsk" path="res://src/scenes/player.tscn" id="12_hada8"]
-[ext_resource type="Script" uid="uid://cfc540larjt12" path="res://src/scripts/goal.gd" id="13_r81rr"]
+[ext_resource type="Script" uid="uid://dsa0uvmqwt72c" path="res://src/scripts/memory_stage_warp.gd" id="13_r81rr"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_cutscene.tscn" id="15_qcyts"]
 [ext_resource type="PackedScene" path="res://src/scenes/memory_menu.tscn" id="16_u2iu4"]
 [ext_resource type="Resource" path="res://src/resources/memories/memory_05.tres" id="17_gvrbx"]
@@ -614,7 +614,7 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("13_r81rr")
 destination_scene = "uid://b11xoyxqioq1l"
-is_final_goal = false
+is_final_warp = false
 unlock_stage_index = 6
 
 [node name="Goal" type="Sprite2D" parent="Goal" unique_id=1760898012]
